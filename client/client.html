@@ -1,5 +1,5 @@
 <head>
-  <title>kwis</title>
+    <title>kwis</title>
 </head>
 
 <body>
@@ -12,6 +12,7 @@
 
 <template name="welkom">
     <h1>Welkom bij de kwis!</h1>
+    <p>Deze template moet nog uitgebreid worden...</p>
 </template>
 
 <template name="kieseenrol">
@@ -56,8 +57,7 @@
             Daarna kun je vragen beantwoorden
             Misschien heb je wel gewonnen!
         {{/if}}     
-    {{/if}}
-    
+
     <p>
     <form class="kieseenrol">
         <input type="submit" value="admin">
@@ -65,14 +65,19 @@
         <input type="submit" value="user">
     </form>
     </p>
+    {{/if}} <!--statusbeschikbaar -->
 </template>
 
 <template name="spelkeuzes">
+    {{#if thereisausername }}
+        Er is een username bekend! Hallo {{username}} !
+    {{else}}
+        Geen naam bekend...
+        <form class="vulnaamin">
+            <input type="text" name="naam" value="">
+            <input type="submit" value="OK">
+        </form>
+    {{/if}}
 </template>
-
-
-
-
-
 
 

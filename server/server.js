@@ -18,6 +18,7 @@ Meteor.startup(() => {
     Meteor.publish('gamestatus', function() {
         return kwis_status.find({}, {fields: {'gamestatus':1}}); 
     });
+   
 });
 
 Meteor.methods({
