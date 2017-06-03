@@ -2,54 +2,39 @@
 // CLIENT
 ///////////////////
 
+// Import ...stuff...
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+// Connect to the gamestatus (should be pushed from server.js)
 var gamestatus_subscription = Meteor.subscribe('gamestatus');
 
-Session.set("Username", null);
+// Find out identifier for client
+console.log(Meteor._localStorage.getItem('Meteor.loginToken'));
 
-//console.log(Session.get('gamestate'));
-
+///////////////////////////////////////////////////
+// Template functions    
+///////////////////////////////////////////////////
 Template.kieseenrol.helpers({
     // Helper functions here
 
     'statusbeschikbaar': function() {
-        //console.log("statusbeschikbaar?" + gamestatus_subscription.ready());
-        //console.log(kwis_status.findOne());
+        // Check whether gamestatus is available for client use
         return gamestatus_subscription.ready();
     },
     
     'gamestatus': function() {
+        // Return actual gamestatus
         console.log("gamestatus: " + kwis_status.findOne().gamestatus);
         return kwis_status.findOne().gamestatus;
     },
     
-    // Need to learn how to efficiently do this, this is madness!
-    'gamestatusIs_0': function() {
+    'gamestatusIs': function(welke) {
+        // Test what value gamestatus has
         var returnvalue = kwis_status.findOne().gamestatus;
-        //console.log(returnvalue);
-        return returnvalue==0;
-    },
-    
-    'gamestatusIs_1': function() {
-        var returnvalue = kwis_status.findOne().gamestatus;
-        //console.log(returnvalue);
-        return returnvalue==1;
-    },
-    
-    'gamestatusIs_2': function() {
-        var returnvalue = kwis_status.findOne().gamestatus;
-        //console.log(returnvalue);
-        return returnvalue==2;
-    },
-    
-    'gamestatusIs_3': function() {
-        var returnvalue = kwis_status.findOne().gamestatus;
-        //console.log(returnvalue);
-        return returnvalue==3;
+        console.log("welke: " + returnvalue);
+        return returnvalue==welke;
     }
-    
 });
 
 Template.kieseenrol.events({
@@ -111,6 +96,7 @@ Template.spelkeuzes.events({
         console.dir(template);
         console.log("Username: '" + username + "'");
         Session.set("username", username);
+        console.log("UserID:" + Meteor.userId());
     }
                
 });

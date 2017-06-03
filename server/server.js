@@ -22,11 +22,20 @@ Meteor.startup(() => {
 });
 
 Meteor.methods({
-    update_gamestatus: function(nieuwe_status){
+    'update_gamestatus': function(nieuwe_status){
         //console.log("Method - nieuwe status:" + nieuwe_status);
         // update
         var id = kwis_status.findOne({}, {fields: {'gamestatus':1}})._id;
         kwis_status.update({ _id: id }, { gamestatus: nieuwe_status });
+    },
+    
+    'createPlayer': function(){
+        console.log("New user!");
+    },
+    
+    'getSessionId': function(){
+        return this.connection.id;
     }
+    
 });
 

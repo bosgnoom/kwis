@@ -12,30 +12,31 @@
 
 <template name="welkom">
     <h1>Welkom bij de kwis!</h1>
-    <p>Deze template moet nog uitgebreid worden...</p>
+    <p>De welkom template moet nog uitgebreid worden...</p>
 </template>
 
 <template name="kieseenrol">
     {{#if statusbeschikbaar}}
         
-        Gamestatus: {{gamestatus}}
+        Gamestatus: {{gamestatus}}<br>
+        User id: {{userid}}<br>
         
-        {{#if gamestatusIs_0 }}
+        {{#if gamestatusIs 0 }}
             <h2>De server is net gestart</h2>
             <p>
-            Het is nog niet bekend wat je wilt doen, maak daarom hier beneden 
-            een keuze welke <i>rol</i> je graag wilt.
+            Het is nog niet bekend wat je wilt doen, maak daarom hier 
+            beneden een keuze welke <i>rol</i> je graag wilt.
             </p>
         {{/if}}  
         
-        {{#if gamestatusIs_1 }}
+        {{#if gamestatusIs 1 }}
             <h2>Administrator</h2>
             Hier komt een overzicht van welke kwissen er zijn.
             Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
             of te verwijderen.
         {{/if}}
         
-        {{#if gamestatusIs_2 }}
+        {{#if gamestatusIs 2 }}
             <h2>Host</h2>
             Hallo, spelmeester! Veel plezier!
             Fase 1: Wachten op spelers, overzicht wie er allemaal is.
@@ -49,7 +50,7 @@
                     Wie heeft er verloren?
         {{/if}}
   
-        {{#if gamestatusIs_3 }}
+        {{#if gamestatusIs 3 }}
             <h2>Speler</h2>
             Hallo, speler! 
             Vul eerst je naam in
