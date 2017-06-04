@@ -18,6 +18,7 @@ Run app (meteor run)
 Meteor packages needed:
 - session
 - reactive-var
-- accounts-password
+- accounts-password (not used)
+- random
 - ... (forgot, will be added in some time...)
 

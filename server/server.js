@@ -3,6 +3,7 @@
 /////////////////////////
 
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 
 Meteor.startup(() => {
     // code to run on server at startup
@@ -18,6 +19,10 @@ Meteor.startup(() => {
     Meteor.publish('gamestatus', function() {
         return kwis_status.find({}, {fields: {'gamestatus':1}}); 
     });
+    
+    Meteor.publish('kwis_gebruikers', function() {
+        return kwis_gebruikers;
+    });
    
 });
 
@@ -29,12 +34,11 @@ Meteor.methods({
         kwis_status.update({ _id: id }, { gamestatus: nieuwe_status });
     },
     
-    'createPlayer': function(){
-        console.log("New user!");
-    },
-    
-    'getSessionId': function(){
-        return this.connection.id;
+    'getUserId': function(username){
+        console.log("New user: " + username);
+        var iets = kwis_gebruikers.insert({ name: username, score: 0 });
+        console.log("id from insert: " + iets);
+        return iets;
     }
     
 });

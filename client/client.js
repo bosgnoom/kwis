@@ -8,9 +8,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 // Connect to the gamestatus (should be pushed from server.js)
 var gamestatus_subscription = Meteor.subscribe('gamestatus');
-
-// Find out identifier for client
-console.log(Meteor._localStorage.getItem('Meteor.loginToken'));
+Session.setDefault("userId", null);
 
 ///////////////////////////////////////////////////
 // Template functions    
@@ -25,15 +23,28 @@ Template.kieseenrol.helpers({
     
     'gamestatus': function() {
         // Return actual gamestatus
-        console.log("gamestatus: " + kwis_status.findOne().gamestatus);
+        //console.log("gamestatus: " + kwis_status.findOne().gamestatus);
         return kwis_status.findOne().gamestatus;
     },
     
     'gamestatusIs': function(welke) {
         // Test what value gamestatus has
         var returnvalue = kwis_status.findOne().gamestatus;
-        console.log("welke: " + returnvalue);
+        //console.log("welke: " + returnvalue);
         return returnvalue==welke;
+    },
+    
+    'thereisanuserId': function(){
+        // Check whether an userId is set
+        var userId = Session.get('userId');
+        console.log("checking for userId: " + userId);
+        return userId != null;
+    },
+    
+    'userId': function(){
+        // Return the userId
+        console.log("Returning userid");
+        return Session.get('userId');
     }
 });
 
@@ -62,42 +73,25 @@ Template.kieseenrol.events({
         Meteor.call('update_gamestatus', nieuwe_status, function(error, result){
             if (error) console.log("Error: " + error);
             if (result) console.log("Result: " + result);
-            });
-                    
-    }
-    
-});
+        });
 
-Template.spelkeuzes.helpers({
-    // Helper functions here
-    'thereisausername': function(){
-        var username = Session.get('username');
-        console.log(username);
-        return username != null;
     },
     
-    'username': function(){
-        return Session.get('username');
-    }
-    
-});
-
-Template.spelkeuzes.events({
-    // Event functions here
-    'submit form': function(event) {
-        // Prevent form submission
-        event.preventDefault();
-        return true;
-    },
-    
-    'submit .vulnaamin': function(event, template) {
-        // Set the player name
+    'submit .vulnaamin': function(event) {
+        // Request userId and set the player name
         var username = event.target.naam.value;
-        console.dir(template);
-        console.log("Username: '" + username + "'");
+        //console.log("Username: '" + username + "'");
         Session.set("username", username);
-        console.log("UserID:" + Meteor.userId());
+        Meteor.call("getUserId", username, function(error, result){
+            if (error) console.log("Error: " + error);
+            if (result) {
+                console.log("Result_getuserId: " + result);
+                Session.set("userId", result);
+                }
+            });
+        console.log("userid gevonden:" + Session.get("userId"));
+            
     }
-               
+    
 });
 

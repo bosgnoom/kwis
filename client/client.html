@@ -6,8 +6,6 @@
     {{>welkom}}
 
     {{>kieseenrol}}
-    
-    {{>spelkeuzes}}  
 </body>
 
 <template name="welkom">
@@ -17,16 +15,35 @@
 
 <template name="kieseenrol">
     {{#if statusbeschikbaar}}
-        
+        <!-- Show status -->
         Gamestatus: {{gamestatus}}<br>
-        User id: {{userid}}<br>
         
+        <!-- First check for userId -->
+        {{#if thereisanuserId}}
+            Er is een userId gevonden! User id: {{userId}}<br>
+        {{else}}
+            Er is nog geen userId... Vul je naam in:
+            <form class="vulnaamin">
+                <input type="text" name="naam" value="">
+                <input type="submit" value="OK">
+            </form>
+        {{/if}}
+                 
+        <!-- Check for the various gamestates -->
         {{#if gamestatusIs 0 }}
             <h2>De server is net gestart</h2>
             <p>
             Het is nog niet bekend wat je wilt doen, maak daarom hier 
             beneden een keuze welke <i>rol</i> je graag wilt.
             </p>
+                <p>
+    <form class="kieseenrol">
+        <input type="submit" value="admin">
+        <input type="submit" value="host">
+        <input type="submit" value="user">
+    </form>
+    </p>
+
         {{/if}}  
         
         {{#if gamestatusIs 1 }}
@@ -59,26 +76,8 @@
             Misschien heb je wel gewonnen!
         {{/if}}     
 
-    <p>
-    <form class="kieseenrol">
-        <input type="submit" value="admin">
-        <input type="submit" value="host">
-        <input type="submit" value="user">
-    </form>
-    </p>
     {{/if}} <!--statusbeschikbaar -->
 </template>
 
-<template name="spelkeuzes">
-    {{#if thereisausername }}
-        Er is een username bekend! Hallo {{username}} !
-    {{else}}
-        Geen naam bekend...
-        <form class="vulnaamin">
-            <input type="text" name="naam" value="">
-            <input type="submit" value="OK">
-        </form>
-    {{/if}}
-</template>
 
 
