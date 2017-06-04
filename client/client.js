@@ -37,13 +37,13 @@ Template.kieseenrol.helpers({
     'thereisanuserId': function(){
         // Check whether an userId is set
         var userId = Session.get('userId');
-        console.log("checking for userId: " + userId);
+        //console.log("checking for userId: " + userId);
         return userId != null;
     },
     
     'userId': function(){
         // Return the userId
-        console.log("Returning userid");
+        //console.log("Returning userid");
         return Session.get('userId');
     }
 });

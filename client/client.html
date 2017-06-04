@@ -15,13 +15,14 @@
 
 <template name="kieseenrol">
     {{#if statusbeschikbaar}}
-        <!-- Show status -->
+        <!-- Show status, to be removed in final version -->
         Gamestatus: {{gamestatus}}<br>
         
         <!-- First check for userId -->
         {{#if thereisanuserId}}
-            Er is een userId gevonden! User id: {{userId}}<br>
+            User id: {{userId}}<br>
         {{else}}
+            <h2>Vertel eens wie je bent!</h2>
             Er is nog geen userId... Vul je naam in:
             <form class="vulnaamin">
                 <input type="text" name="naam" value="">
@@ -31,19 +32,20 @@
                  
         <!-- Check for the various gamestates -->
         {{#if gamestatusIs 0 }}
-            <h2>De server is net gestart</h2>
+            <!-- Initial state of the game:
+                    select between: admin, host and user -->        
+            <h2>De gameserver is net gestart</h2>
             <p>
-            Het is nog niet bekend wat je wilt doen, maak daarom hier 
-            beneden een keuze welke <i>rol</i> je graag wilt.
+                Het is nog niet bekend wat je wilt doen, maak daarom hier 
+                beneden een keuze welke <i>rol</i> je graag wilt.
             </p>
-                <p>
-    <form class="kieseenrol">
-        <input type="submit" value="admin">
-        <input type="submit" value="host">
-        <input type="submit" value="user">
-    </form>
-    </p>
-
+            <p>
+                <form class="kieseenrol">
+                    <input type="submit" value="admin">
+                    <input type="submit" value="host">
+                    <input type="submit" value="user">
+                </form>
+            </p>
         {{/if}}  
         
         {{#if gamestatusIs 1 }}

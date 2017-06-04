@@ -20,10 +20,6 @@ Meteor.startup(() => {
         return kwis_status.find({}, {fields: {'gamestatus':1}}); 
     });
     
-    Meteor.publish('kwis_gebruikers', function() {
-        return kwis_gebruikers;
-    });
-   
 });
 
 Meteor.methods({
@@ -36,8 +32,11 @@ Meteor.methods({
     
     'getUserId': function(username){
         console.log("New user: " + username);
-        var iets = kwis_gebruikers.insert({ name: username, score: 0 });
+        var iets = kwis_gebruikers.insert({ name: username, score: 0, rol: 0 });
         console.log("id from insert: " + iets);
+        
+        console.log(kwis_gebruikers.find().fetch());
+        
         return iets;
     }
     
