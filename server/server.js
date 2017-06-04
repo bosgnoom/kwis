@@ -14,7 +14,7 @@ Meteor.startup(() => {
     // Clear game state
     kwis_status.remove({});
     kwis_status.insert({ gamestatus: 0 }); // Status = 0, give 1st user choice
-    kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
+    //kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
   
     Meteor.publish('gamestatus', function() {
         return kwis_status.find({}, {fields: {'gamestatus':1}}); 
@@ -38,6 +38,14 @@ Meteor.methods({
         console.log(kwis_gebruikers.find().fetch());
         
         return iets;
+    },
+    
+    'veranderRol': function(userid, role){
+        console.log("Changing user role for id: " + userid);
+        console.log("New role: " + role);
+        var iets = kwis_gebruikers.update({ _id: userid }, {$set: { rol: role }});
+        console.log("Iets: " + iets);
+        console.log(kwis_gebruikers.find().fetch());
     }
     
 });

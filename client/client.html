@@ -29,7 +29,7 @@
                 <input type="submit" value="OK">
             </form>
         {{/if}}
-                 
+        
         <!-- Check for the various gamestates -->
         {{#if gamestatusIs 0 }}
             <!-- Initial state of the game:
@@ -49,10 +49,7 @@
         {{/if}}  
         
         {{#if gamestatusIs 1 }}
-            <h2>Administrator</h2>
-            Hier komt een overzicht van welke kwissen er zijn.
-            Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
-            of te verwijderen.
+            {{>admin_screen}}
         {{/if}}
         
         {{#if gamestatusIs 2 }}
@@ -70,6 +67,7 @@
         {{/if}}
   
         {{#if gamestatusIs 3 }}
+          
             <h2>Speler</h2>
             Hallo, speler! 
             Vul eerst je naam in
@@ -81,5 +79,13 @@
     {{/if}} <!--statusbeschikbaar -->
 </template>
 
+<template name="admin_screen">
+    Admin template...
+                <h2>Administrator</h2>
+            Hier komt een overzicht van welke kwissen er zijn.
+            Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
+            of te verwijderen.
+
+</template>
 
 

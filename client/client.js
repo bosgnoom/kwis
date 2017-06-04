@@ -54,26 +54,22 @@ Template.kieseenrol.events({
         // Prevent form submission
         event.preventDefault();
         return true;
-    },
+        },
     
     'click .kieseenrol': function(event) {
         // Change the role of the player
         var nieuwe_rol = event.target.value;
-        var nieuwe_status = null;
-        
-        if (nieuwe_rol == "admin") nieuwe_status = 1;
-        if (nieuwe_rol == "host") nieuwe_status = 2;
-        if (nieuwe_rol == "user") nieuwe_status = 3;
-        
-        //console.log("Nieuwe status: " + nieuwe_status);
-        
-        var kwis_status_id = kwis_status.findOne()._id;
-        //console.log(kwis_status_id);  
-        
-        Meteor.call('update_gamestatus', nieuwe_status, function(error, result){
+        var user = Session.get('userId');
+       
+        Meteor.call('veranderRol', user, nieuwe_rol, function(error, result){
             if (error) console.log("Error: " + error);
             if (result) console.log("Result: " + result);
-        });
+            });
+        
+        if (nieuwe_rol == "admin") {
+            console.log("ADMIN");
+            Meteor.call('update_gamestatus', 1);
+            };
 
     },
     
