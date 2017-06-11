@@ -2,13 +2,17 @@
 // CLIENT
 ///////////////////
 
-// Import ...stuff...
+// Import ...stuff... Needed?
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 // Connect to the gamestatus (should be pushed from server.js)
 var gamestatus_subscription = Meteor.subscribe('gamestatus');
 Session.setDefault("userId", null);
+
+// For debugging
+Meteor.subscribe('gebruikers');
+Meteor.subscribe('kwis_vragen');
 
 ///////////////////////////////////////////////////
 // Template functions    
@@ -38,7 +42,10 @@ Template.kieseenrol.helpers({
         // Check whether an userId is set
         var userId = Session.get('userId');
         //console.log("checking for userId: " + userId);
-        return userId != null;
+        var gamestatus = kwis_status.findOne().gamestatus;
+        var returnvalue = (userId != null) || (gamestatus < 2);
+        console.log("Gamestatus: " + returnvalue);
+        return returnvalue;
     },
     
     'userId': function(){
@@ -90,4 +97,55 @@ Template.kieseenrol.events({
     }
     
 });
+
+Template.admin_screen.helpers({
+// Helpers for the admin screen
+	kwis_titels: function() {
+		return kwis_vragen.find();
+	},
+		
+	isCreatingkwis: function() {
+		return Session.get("isCreatingkwis");
+	},
+});
+
+Template.admin_screen.events({
+	'submit form': function(event) {
+	  // Prevent form submission
+	  event.preventDefault();
+	  return true;
+  },
+        
+	'click a.create': function() {
+		Session.set('isCreatingkwis', true);
+	},
+	
+	'click a.cancel': function() {
+		Session.set('isCreatingkwis', false);
+	},
+	
+	'submit form.Creatingkwis': function(event) {
+		var kwisnaam = event.target.naam.value;
+		//console.log("kwisnaam: " + kwisnaam);
+		Meteor.call("voegkwisnaamtoe", kwisnaam, function(error, result){
+            if (error) console.log("Error: " + error);
+            if (result) {
+                console.log("voegkwisnaamtoe: " + result);
+                }
+            });
+    Session.set("isCreatingkwis", false);
+  },
+  
+  'click a.remove': function(event) {
+  	Meteor.call("verwijderkwis", this._id, function(error, result){
+	    if (error) console.log("Error: " + error);
+      if (result) {
+	      console.log("verwijderkwis: " + result);
+      }
+    });
+	}
+	
+	
+});
+
 

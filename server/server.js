@@ -15,10 +15,6 @@ Meteor.startup(() => {
     kwis_status.remove({});
     kwis_status.insert({ gamestatus: 0 }); // Status = 0, give 1st user choice
     //kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
-  
-    Meteor.publish('gamestatus', function() {
-        return kwis_status.find({}, {fields: {'gamestatus':1}}); 
-    });
     
 });
 
@@ -46,6 +42,19 @@ Meteor.methods({
         var iets = kwis_gebruikers.update({ _id: userid }, {$set: { rol: role }});
         console.log("Iets: " + iets);
         console.log(kwis_gebruikers.find().fetch());
+    },
+    
+    'voegkwisnaamtoe': function(kwisnaam){
+    	console.log(kwisnaam);
+    	var iets = kwis_vragen.insert({ naam: kwisnaam });
+    	console.log("Iets: " + iets);
+      console.log(kwis_vragen.find().fetch());
+  	},
+  	
+  	'verwijderkwis': function(kwisid) {
+			var iets = kwis_vragen.remove({ _id: kwisid });
+    	console.log("Iets: " + iets);
+      console.log(kwis_vragen.find().fetch());
     }
     
 });

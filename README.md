@@ -21,4 +21,5 @@ Meteor packages needed:
 - accounts-password (not used)
 - random
 - ... (forgot, will be added in some time...)
+- msavin:mongol (for testing)
 

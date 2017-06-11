@@ -1,91 +1,110 @@
 <head>
-    <title>kwis</title>
+	<title>kwis</title>
 </head>
 
 <body>
-    {{>welkom}}
+	{{>welkom}}
 
-    {{>kieseenrol}}
+	{{>kieseenrol}}
 </body>
 
 <template name="welkom">
-    <h1>Welkom bij de kwis!</h1>
-    <p>De welkom template moet nog uitgebreid worden...</p>
+	<h1>Welkom bij de kwis!</h1>
+	<p>De welkom template moet nog uitgebreid worden...</p>
 </template>
 
 <template name="kieseenrol">
-    {{#if statusbeschikbaar}}
-        <!-- Show status, to be removed in final version -->
-        Gamestatus: {{gamestatus}}<br>
+	{{#if statusbeschikbaar}}
+  	<!-- Show status, to be removed in final version -->
+		Gamestatus: {{gamestatus}}<br>
+	
+		<!-- Check for the various gamestates -->
+		{{#if gamestatusIs 0 }}
+			<!-- Initial state of the game:
+			select between: admin, host and user -->
+			<h2>De gameserver is net gestart</h2>
+			<p>
+				Het is nog niet bekend wat je wilt doen, maak daarom hier 
+				beneden een keuze welke <i>rol</i> je graag wilt.
+			</p>
+			<p>
+				<form class="kieseenrol">
+					<input type="submit" value="admin">
+					<input type="submit" value="host">
+					<input type="submit" value="user">
+				</form>
+			</p>
+		{{/if}}  
         
-        <!-- First check for userId -->
-        {{#if thereisanuserId}}
-            User id: {{userId}}<br>
-        {{else}}
-            <h2>Vertel eens wie je bent!</h2>
-            Er is nog geen userId... Vul je naam in:
-            <form class="vulnaamin">
-                <input type="text" name="naam" value="">
-                <input type="submit" value="OK">
-            </form>
-        {{/if}}
+    {{#if gamestatusIs 1 }}
+      {{>admin_screen}}
+    {{/if}}
         
-        <!-- Check for the various gamestates -->
-        {{#if gamestatusIs 0 }}
-            <!-- Initial state of the game:
-                    select between: admin, host and user -->        
-            <h2>De gameserver is net gestart</h2>
-            <p>
-                Het is nog niet bekend wat je wilt doen, maak daarom hier 
-                beneden een keuze welke <i>rol</i> je graag wilt.
-            </p>
-            <p>
-                <form class="kieseenrol">
-                    <input type="submit" value="admin">
-                    <input type="submit" value="host">
-                    <input type="submit" value="user">
-                </form>
-            </p>
-        {{/if}}  
-        
-        {{#if gamestatusIs 1 }}
-            {{>admin_screen}}
-        {{/if}}
-        
-        {{#if gamestatusIs 2 }}
-            <h2>Host</h2>
-            Hallo, spelmeester! Veel plezier!
-            Fase 1: Wachten op spelers, overzicht wie er allemaal is.
-            Fase 2: Het spel start
-            Fase 3: Er komt een vraag op het scherm
-            Fase 4: De spelers kunnen een keuze maken (met een time-out)
-            Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
-                    En misschien hoeveel punten
-            Fase 6: Fase 3-4-5 tot aan de laatste vraag
-            Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
-                    Wie heeft er verloren?
-        {{/if}}
+    {{#if gamestatusIs 2 }}
+      <h2>Host</h2>
+      Hallo, spelmeester! Veel plezier!
+      Fase 1: Wachten op spelers, overzicht wie er allemaal is.
+      Fase 2: Het spel start
+      Fase 3: Er komt een vraag op het scherm
+      Fase 4: De spelers kunnen een keuze maken (met een time-out)
+      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
+              En misschien hoeveel punten
+      Fase 6: Fase 3-4-5 tot aan de laatste vraag
+      Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
+              Wie heeft er verloren?
+    {{/if}}
   
-        {{#if gamestatusIs 3 }}
-          
-            <h2>Speler</h2>
-            Hallo, speler! 
-            Vul eerst je naam in
-            Daarna kom je in een wachtscherm
-            Daarna kun je vragen beantwoorden
-            Misschien heb je wel gewonnen!
-        {{/if}}     
-
-    {{/if}} <!--statusbeschikbaar -->
+		<!-- The remaining game states are for the user, so check (and ask) 
+				 the user name -->
+		{{#if thereisanuserId}}
+			<!-- to be removed in final version -->
+			User id: {{userId}}<br>
+		
+      {{#if gamestatusIs 3 }}
+	      <h2>Speler</h2>
+        Hallo, speler! 
+        Vul eerst je naam in
+        Daarna kom je in een wachtscherm
+        Daarna kun je vragen beantwoorden
+        Misschien heb je wel gewonnen!
+	    {{/if}}     
+        
+    {{else}} <!-- Userid -->
+	    <h2>Vertel eens wie je bent!</h2>
+      Er is nog geen userId... Vul je naam in:
+      <form class="vulnaamin">
+	      <input type="text" name="naam" value="">
+        <input type="submit" value="OK">
+      </form>
+	  {{/if}} <!-- Userid -->
+	  
+	{{/if}} <!--statusbeschikbaar -->
 </template>
 
 <template name="admin_screen">
-    Admin template...
-                <h2>Administrator</h2>
-            Hier komt een overzicht van welke kwissen er zijn.
-            Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
-            of te verwijderen.
-
+	<h2>Administrator</h2>
+  Hier komt een overzicht van welke kwissen er zijn.
+  Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
+  of te verwijderen.
+  
+  <h3>Overzicht van de kwissen:</h3>
+  
+  {{#if isCreatingkwis}}
+  	<form class="Creatingkwis">
+  		<input name="naam" type="text">
+  		<button type="submit">Submit</button>
+  		<a class="cancel" href="#">Cancel</a>
+		</form>
+	{{else}}
+		<a class="create" href="#">Kwis toevoegen</a>
+	{{/if}}
+	
+  <ul>
+  	{{#each kwis_titels}}
+  		<li>{{naam}} <a class="remove" href="#">(x)</a></li>
+		{{/each}}
+	</ul>
+  
 </template>
 
 
