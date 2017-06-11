@@ -42,17 +42,21 @@ Template.kieseenrol.helpers({
         // Check whether an userId is set
         var userId = Session.get('userId');
         //console.log("checking for userId: " + userId);
-        var gamestatus = kwis_status.findOne().gamestatus;
-        var returnvalue = (userId != null) || (gamestatus < 2);
-        console.log("Gamestatus: " + returnvalue);
-        return returnvalue;
+        return userId != null;
     },
     
     'userId': function(){
         // Return the userId
         //console.log("Returning userid");
         return Session.get('userId');
+    },
+    
+    'userisadmin': function(){
+    	// Check if user is admin
+    	// And yes, very insecure!
+    return Session.get('isAdmin')
     }
+    	
 });
 
 Template.kieseenrol.events({
@@ -74,7 +78,9 @@ Template.kieseenrol.events({
             });
         
         if (nieuwe_rol == "admin") {
-            console.log("ADMIN");
+            //console.log("ADMIN");
+            // Yes, very insecure!
+            Session.set('isAdmin', true);
             Meteor.call('update_gamestatus', 1);
             };
 
