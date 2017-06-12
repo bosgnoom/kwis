@@ -55,7 +55,11 @@ Template.kieseenrol.helpers({
     	// Check if user is admin
     	// And yes, very insecure!
     return Session.get('isAdmin')
-    }
+    },
+    
+    'username': function(){
+    	return Session.get('username');
+  	}
     	
 });
 
@@ -107,12 +111,16 @@ Template.kieseenrol.events({
 Template.admin_screen.helpers({
 // Helpers for the admin screen
 	kwis_titels: function() {
-		return kwis_vragen.find();
+		return kwis_vragen.find({}, {sort: {naam: 1}});
 	},
 		
 	isCreatingkwis: function() {
 		return Session.get("isCreatingkwis");
 	},
+	
+	isEditingKwis: function(){
+		return Session.get('editedKwisId') === this._id;
+	}
 });
 
 Template.admin_screen.events({
@@ -128,20 +136,13 @@ Template.admin_screen.events({
 	
 	'click a.cancel': function() {
 		Session.set('isCreatingkwis', false);
+		Session.set('editedKwisId', null);
 	},
 	
-	'submit form.Creatingkwis': function(event) {
-		var kwisnaam = event.target.naam.value;
-		//console.log("kwisnaam: " + kwisnaam);
-		Meteor.call("voegkwisnaamtoe", kwisnaam, function(error, result){
-            if (error) console.log("Error: " + error);
-            if (result) {
-                console.log("voegkwisnaamtoe: " + result);
-                }
-            });
-    Session.set("isCreatingkwis", false);
-  },
-  
+	'click a.edit': function(event){
+		Session.set('editedKwisId', this._id);
+	},
+	
   'click a.remove': function(event) {
   	Meteor.call("verwijderkwis", this._id, function(error, result){
 	    if (error) console.log("Error: " + error);
@@ -149,8 +150,30 @@ Template.admin_screen.events({
 	      console.log("verwijderkwis: " + result);
       }
     });
-	}
+	},
 	
+	'submit form.Creatingkwis': function(event) {
+		var kwisnaam = event.target.naam.value;
+		//console.log("kwisnaam: " + kwisnaam);
+		Meteor.call("voegkwisnaamtoe", kwisnaam, function(error, result){
+ 			if (error) console.log("Error: " + error);
+ 			if (result) console.log("voegkwisnaamtoe: " + result);
+    });
+    Session.set("isCreatingkwis", false);
+  },
+  
+  'submit form.editingKwis': function(event){
+		var kwisNaam = event.target.naam.value;
+
+  	if (kwisNaam.length){
+  		console.log("Update kwisnaam: " + this._id);
+  		Meteor.call("veranderKwisNaam", this._id, kwisNaam, function(error, result){
+  			if (error) console.log("Error: " + error);
+ 				if (result) console.log("voegkwisnaamtoe: " + result);
+  		});	
+  		Session.set('editedKwisId', null);
+		}
+	}
 	
 });
 

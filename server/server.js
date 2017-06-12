@@ -2,8 +2,9 @@
 // SERVER
 /////////////////////////
 
-import { Meteor } from 'meteor/meteor';
-import { Random } from 'meteor/random';
+// import { Meteor } from 'meteor/meteor';
+// import { Random } from 'meteor/random';
+//
 
 Meteor.startup(() => {
     // code to run on server at startup
@@ -24,15 +25,14 @@ Meteor.methods({
         // update
         var id = kwis_status.findOne({}, {fields: {'gamestatus':1}})._id;
         kwis_status.update({ _id: id }, { gamestatus: nieuwe_status });
+        return id;
     },
     
     'getUserId': function(username){
-        console.log("New user: " + username);
+        //console.log("New user: " + username);
         var iets = kwis_gebruikers.insert({ name: username, score: 0, rol: 0 });
-        console.log("id from insert: " + iets);
-        
-        console.log(kwis_gebruikers.find().fetch());
-        
+        //console.log("id from insert: " + iets);
+        //console.log(kwis_gebruikers.find().fetch());
         return iets;
     },
     
@@ -42,6 +42,7 @@ Meteor.methods({
         var iets = kwis_gebruikers.update({ _id: userid }, {$set: { rol: role }});
         console.log("Iets: " + iets);
         console.log(kwis_gebruikers.find().fetch());
+        return iets;
     },
     
     'voegkwisnaamtoe': function(kwisnaam){
@@ -49,13 +50,23 @@ Meteor.methods({
     	var iets = kwis_vragen.insert({ naam: kwisnaam });
     	console.log("Iets: " + iets);
       console.log(kwis_vragen.find().fetch());
+      return iets;
   	},
   	
   	'verwijderkwis': function(kwisid) {
 			var iets = kwis_vragen.remove({ _id: kwisid });
     	console.log("Iets: " + iets);
       console.log(kwis_vragen.find().fetch());
-    }
+      return iets;
+    },
+    
+    'veranderKwisNaam': function(kwisId, kwisNaam){
+    	//console.log("kwisId: " + kwisId);
+    	//console.log("kwisNaam: " + kwisNaam);
+    	var iets = kwis_vragen.update({ _id: kwisId}, {$set: { naam: kwisNaam }});
+    	//console.log("iets: " + iets);
+    	return iets;
+  	}
     
 });
 

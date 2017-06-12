@@ -21,6 +21,7 @@
 		{{#if thereisanuserId}}
 			<!-- to be removed in final version -->
 			User id: {{userId}}<br>
+			Hallo {{username}}<br>
   	
 			<!-- Check for the various gamestates -->
 			{{#if gamestatusIs 0 }}
@@ -101,7 +102,16 @@
 	
   <ul>
   	{{#each kwis_titels}}
-  		<li>{{naam}} <a class="remove" href="#">(x)</a></li>
+  		<li>
+  			{{#if isEditingKwis}}
+  				<!-- See edit_kwis.html -->
+  				{{>editingKwis}}
+				{{else}}
+					{{naam}}
+					<a class="edit" href="#">edit</a>
+  				<a class="remove" href="#">(x)</a>
+				{{/if}}
+			</li>
 		{{/each}}
 	</ul>
   
