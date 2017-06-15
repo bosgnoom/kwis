@@ -1,5 +1,6 @@
 <head>
 	<title>kwis</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
@@ -87,34 +88,33 @@
   Hier komt een overzicht van welke kwissen er zijn.
   Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
   of te verwijderen.
-  
-  <h3>Overzicht van de kwissen:</h3>
-  
-  {{#if isCreatingkwis}}
-  	<form class="Creatingkwis">
-  		<input name="naam" type="text">
-  		<button type="submit">Submit</button>
-  		<a class="cancel" href="#">Cancel</a>
-		</form>
-	{{else}}
-		<a class="create" href="#">Kwis toevoegen</a>
-	{{/if}}
 	
-  <ul>
-  	{{#each kwis_titels}}
-  		<li>
-  			{{#if isEditingKwis}}
-  				<!-- See edit_kwis.html -->
-  				{{>editingKwis}}
-				{{else}}
+	{{#if isEditingKwis}}
+		<!-- See edit_kwis.html -->
+		{{>editingKwis}}
+	{{else}}
+	  <h3>Overzicht van de kwissen:</h3>
+  
+	  {{#if isCreatingkwis}}
+	  	<form class="Creatingkwis">
+	  		<input name="naam" type="text">
+	  		<button type="submit">Submit</button>
+	  		<a class="cancel" href="#">Cancel</a>
+			</form>
+		{{else}}
+			<a class="create" href="#">Kwis toevoegen</a>
+		{{/if}}
+
+	  <ul>
+	  	{{#each kwis_titels}}
+	  		<li class="kwisnaam">
 					{{naam}}
 					<a class="edit" href="#">edit</a>
   				<a class="remove" href="#">(x)</a>
-				{{/if}}
 			</li>
-		{{/each}}
-	</ul>
-  
+			{{/each}}
+		</ul>
+	{{/if}}  
 </template>
 
 

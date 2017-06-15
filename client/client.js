@@ -119,7 +119,8 @@ Template.admin_screen.helpers({
 	},
 	
 	isEditingKwis: function(){
-		return Session.get('editedKwisId') === this._id;
+		//return Session.get('editedKwisId') === this._id;
+		return Session.get('editedKwisId') != null;
 	}
 });
 
@@ -140,6 +141,7 @@ Template.admin_screen.events({
 	},
 	
 	'click a.edit': function(event){
+		//console.log("Going to edit kwis");
 		Session.set('editedKwisId', this._id);
 	},
 	
@@ -160,20 +162,7 @@ Template.admin_screen.events({
  			if (result) console.log("voegkwisnaamtoe: " + result);
     });
     Session.set("isCreatingkwis", false);
-  },
-  
-  'submit form.editingKwis': function(event){
-		var kwisNaam = event.target.naam.value;
-
-  	if (kwisNaam.length){
-  		console.log("Update kwisnaam: " + this._id);
-  		Meteor.call("veranderKwisNaam", this._id, kwisNaam, function(error, result){
-  			if (error) console.log("Error: " + error);
- 				if (result) console.log("voegkwisnaamtoe: " + result);
-  		});	
-  		Session.set('editedKwisId', null);
-		}
-	}
+  }
 	
 });
 
