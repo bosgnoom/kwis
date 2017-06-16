@@ -47,23 +47,23 @@ Meteor.methods({
     
     'voegkwisnaamtoe': function(kwisnaam){
     	console.log(kwisnaam);
-    	var iets = kwis_vragen.insert({ naam: kwisnaam });
+    	var iets = kwis_namen.insert({ naam: kwisnaam });
     	console.log("Iets: " + iets);
-      console.log(kwis_vragen.find().fetch());
+      console.log(kwis_namen.find().fetch());
       return iets;
   	},
   	
   	'verwijderkwis': function(kwisid) {
-			var iets = kwis_vragen.remove({ _id: kwisid });
+			var iets = kwis_namen.remove({ _id: kwisid });
     	console.log("Iets: " + iets);
-      console.log(kwis_vragen.find().fetch());
+      console.log(kwis_namen.find().fetch());
       return iets;
     },
     
     'veranderKwisNaam': function(kwisId, kwisNaam){
     	//console.log("kwisId: " + kwisId);
     	//console.log("kwisNaam: " + kwisNaam);
-    	var iets = kwis_vragen.update({ _id: kwisId}, {$set: { naam: kwisNaam }});
+    	var iets = kwis_namen.update({ _id: kwisId}, {$set: { naam: kwisNaam }});
     	//console.log("iets: " + iets);
     	return iets;
   	}

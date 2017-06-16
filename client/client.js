@@ -13,6 +13,7 @@ Session.setDefault("userId", null);
 // For debugging
 Meteor.subscribe('gebruikers');
 Meteor.subscribe('kwis_vragen');
+Meteor.subscribe('kwis_namen');
 
 ///////////////////////////////////////////////////
 // Template functions    
@@ -111,7 +112,7 @@ Template.kieseenrol.events({
 Template.admin_screen.helpers({
 // Helpers for the admin screen
 	kwis_titels: function() {
-		return kwis_vragen.find({}, {sort: {naam: 1}});
+		return kwis_namen.find({}, {sort: {naam: 1}});
 	},
 		
 	isCreatingkwis: function() {
