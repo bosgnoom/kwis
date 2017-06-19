@@ -66,7 +66,27 @@ Meteor.methods({
     	var iets = kwis_namen.update({ _id: kwisId}, {$set: { naam: kwisNaam }});
     	//console.log("iets: " + iets);
     	return iets;
-  	}
+  	},
+  	
+  	'vraagToevoegen': function(kwisId, vraag, antwoord1, antwoord2, 
+					antwoord3, antwoord4, goede){
+			console.log("Vraag toevoegen");
+			var iets = kwis_vragen.insert({ kwisId: kwisId, 
+					vraag: vraag,
+					antwoord1: antwoord1,
+					antwoord2: antwoord2,
+					antwoord3: antwoord3,
+					antwoord4: antwoord4,
+					goede: goede });
+			return iets;
+		},
+		
+		'verwijderVraag': function(vraagId){
+			console.log("Vraag verwijderen");
+			var iets = kwis_vragen.remove({ _id: vraagId });
+			return iets;
+		}
+				
     
 });
 
