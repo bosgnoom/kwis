@@ -12,7 +12,6 @@
 
 <template name="welkom">
 	<h1>Welkom bij de kwis!</h1>
-	<p>De welkom template moet nog uitgebreid worden...</p>
 </template>
 
 <template name="kieseenrol">
@@ -22,8 +21,7 @@
 
 		{{#if thereisanuserId}}
 			<!-- to be removed in final version -->
-			User id: {{userId}}<br>
-			Hallo {{username}}<br>
+			Hallo {{username}} ({{userId}})<br>
   	
 			<!-- Check for the various gamestates -->
 			{{#if gamestatusIs 0 }}
