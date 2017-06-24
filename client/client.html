@@ -44,21 +44,14 @@
 	    {{#if gamestatusIs 1 }}
 	    	{{#if userisadmin }}
 	    		{{>admin_screen}}
+    		{{else}}
+    			Er is al een admin. Deze heet.... . Een reset knop hier zou handig zijn.
 	  		{{/if}}
 	    {{/if}}
         
 	    {{#if gamestatusIs 2 }}
-	      <h2>Host</h2>
-	      Hallo, spelmeester! Veel plezier!
-	      Fase 1: Wachten op spelers, overzicht wie er allemaal is.
-	      Fase 2: Het spel start
-	      Fase 3: Er komt een vraag op het scherm
-	      Fase 4: De spelers kunnen een keuze maken (met een time-out)
-	      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
-	              En misschien hoeveel punten
-	      Fase 6: Fase 3-4-5 tot aan de laatste vraag
-	      Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
-	              Wie heeft er verloren?
+	    	<!-- See gamehost.html and .js -->
+	      {{>gamehost}}
 	    {{/if}}
 	  
 	    {{#if gamestatusIs 3 }}

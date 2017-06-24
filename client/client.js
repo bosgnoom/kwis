@@ -88,6 +88,11 @@ Template.kieseenrol.events({
             Session.set('isAdmin', true);
             Meteor.call('update_gamestatus', 1);
             };
+            
+        if (nieuwe_rol == "host") {
+        	Session.set('isHost', true);
+        	Meteor.call('update_gamestatus', 2);
+      	};
 
     },
     
