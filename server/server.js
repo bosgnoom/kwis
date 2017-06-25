@@ -15,6 +15,7 @@ Meteor.startup(() => {
     // Clear game state
     kwis_status.remove({});
     kwis_status.insert({ gamestatus: 0 }); // Status = 0, give 1st user choice
+    kwis_status.insert({ thisKwis: null });
     //kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
     
 });
@@ -30,7 +31,7 @@ Meteor.methods({
     
     'getUserId': function(username){
         //console.log("New user: " + username);
-        var iets = kwis_gebruikers.insert({ name: username, score: 0, rol: 0 });
+        var iets = kwis_gebruikers.insert({ name: username, score: 0, rol: null });
         //console.log("id from insert: " + iets);
         //console.log(kwis_gebruikers.find().fetch());
         return iets;
@@ -85,8 +86,13 @@ Meteor.methods({
 			console.log("Vraag verwijderen");
 			var iets = kwis_vragen.remove({ _id: vraagId });
 			return iets;
+		},
+		
+		'thisKwis': function(kwisId){
+			console.log("Kwis: " & kwisId);
+			//var iets = kwis_status.update( thisKwis: kwisId );
+			return true;
 		}
-				
     
 });
 

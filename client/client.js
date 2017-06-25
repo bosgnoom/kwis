@@ -11,7 +11,7 @@ var gamestatus_subscription = Meteor.subscribe('gamestatus');
 Session.setDefault("userId", null);
 
 // For debugging
-Meteor.subscribe('gebruikers');
+Meteor.subscribe('kwis_gebruikers');
 Meteor.subscribe('kwis_vragen');
 Meteor.subscribe('kwis_namen');
 

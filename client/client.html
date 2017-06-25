@@ -51,16 +51,12 @@
         
 	    {{#if gamestatusIs 2 }}
 	    	<!-- See gamehost.html and .js -->
-	      {{>gamehost}}
+	      {{>chooseKwis}}
 	    {{/if}}
 	  
 	    {{#if gamestatusIs 3 }}
-	      <h2>Speler</h2>
-	      Hallo, speler! 
-	      Vul eerst je naam in
-	      Daarna kom je in een wachtscherm
-	      Daarna kun je vragen beantwoorden
-	      Misschien heb je wel gewonnen!
+	    	<!-- See gamehost.html and .js -->	    
+	      {{>waitRoom}}
 	    {{/if}}     
     
     {{else}} <!-- Userid -->
