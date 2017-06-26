@@ -92,7 +92,17 @@ Meteor.methods({
 			console.log("Kwis: " & kwisId);
 			//var iets = kwis_status.update( thisKwis: kwisId );
 			return true;
-		}
+		},
+		
+		'startTimer': function(){
+			console.log("Timer gestart...");
+			Meteor.setTimeout(function(){
+        var id = kwis_status.findOne({}, {fields: {'gamestatus':1}})._id;
+        kwis_status.update({ _id: id }, { gamestatus: 5 });
+        }, 5000);
+      return true;
+    }
+
     
 });
 

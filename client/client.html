@@ -57,8 +57,18 @@
 	    {{#if gamestatusIs 3 }}
 	    	<!-- See gamehost.html and .js -->	    
 	      {{>waitRoom}}
-	    {{/if}}    
+	    {{/if}} 
+	    
+	    {{#if gamestatusIs 4 }}
+      	<!-- See gamehost.html and .js -->
+      	{{>questionRoom}}
+    	{{/if}}
     
+	    {{#if gamestatusIs 5 }}
+	    	<!-- See gamehost.html and .js -->
+      	{{>answerRoom}}
+    	{{/if}}
+
     {{else}} <!-- Userid -->
 		  <h2>Vertel eens wie je bent!</h2>
 	    Er is nog geen userId... Vul je naam in:
