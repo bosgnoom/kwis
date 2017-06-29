@@ -16,6 +16,7 @@ Meteor.startup(() => {
     kwis_status.remove({});
     kwis_status.insert({ gamestatus: 0 }); // Status = 0, give 1st user choice
     kwis_status.insert({ thisKwis: null });
+    kwis_status.insert({ currentQuesion: 0 });
     //kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
     
 });
@@ -101,8 +102,15 @@ Meteor.methods({
         kwis_status.update({ _id: id }, { gamestatus: 5 });
         }, 5000);
       return true;
-    }
-
+    },
+    
+    'currentQuestion': function(welke){
+			//var id = kwis_status.findOne({}, { fields: {'currentQuestion':1}})._id;
+			//console.log(id);
+			//var iets = kwis_status.update({ _id: id } , { currentQuestion: welke });
+			//console.log(iets);
+			return true;
+		}
     
 });
 
