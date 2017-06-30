@@ -14,21 +14,16 @@ Meteor.startup(() => {
     
     // Clear game state
     kwis_status.remove({});
-    kwis_status.insert({ gamestatus: 0 }); // Status = 0, give 1st user choice
-    kwis_status.insert({ thisKwis: null });
-    kwis_status.insert({ currentQuesion: 0 });
-    //kwis_status.insert({ showchoices: true }); // Show choice admin/host/user
+    kwis_status.insert({ gamestatus: 0, thisKwis: null, currentQuestion: 0 });
     
 });
 
 Meteor.methods({
-    'update_gamestatus': function(nieuwe_status){
-        //console.log("Method - nieuwe status:" + nieuwe_status);
-        // update
-        var id = kwis_status.findOne({}, {fields: {'gamestatus':1}})._id;
-        kwis_status.update({ _id: id }, { gamestatus: nieuwe_status });
-        return id;
-    },
+	'update_gamestatus': function(nieuwe_status){
+		var id = kwis_status.findOne()._id;
+		kwis_status.update({ _id: id }, {$set: { gamestatus: nieuwe_status }});
+		return id;
+  },
     
     'getUserId': function(username){
         //console.log("New user: " + username);
@@ -38,13 +33,13 @@ Meteor.methods({
         return iets;
     },
     
-    'veranderRol': function(userid, role){
-        console.log("Changing user role for id: " + userid);
-        console.log("New role: " + role);
-        var iets = kwis_gebruikers.update({ _id: userid }, {$set: { rol: role }});
-        console.log("Iets: " + iets);
-        console.log(kwis_gebruikers.find().fetch());
-        return iets;
+  'veranderRol': function(userid, role){
+    //console.log("Changing user role for id: " + userid);
+    //    console.log("New role: " + role);
+    var iets = kwis_gebruikers.update({ _id: userid }, {$set: { rol: role }});
+		//    console.log("Iets: " + iets);
+    //    console.log(kwis_gebruikers.find().fetch());
+    return iets;
     },
     
     'voegkwisnaamtoe': function(kwisnaam){
@@ -89,27 +84,27 @@ Meteor.methods({
 			return iets;
 		},
 		
-		'thisKwis': function(kwisId){
-			console.log("Kwis: " & kwisId);
-			//var iets = kwis_status.update( thisKwis: kwisId );
-			return true;
-		},
+	'thisKwis': function(kwisId){
+		console.log("Kwis: " & kwisId);
+		var id = kwis_status.findOne()._id;
+		kwis_status.update({ _id: id }, {$set: { thisKwis: kwisId }});
+		return id;
+	},
 		
 		'startTimer': function(){
 			console.log("Timer gestart...");
 			Meteor.setTimeout(function(){
-        var id = kwis_status.findOne({}, {fields: {'gamestatus':1}})._id;
-        kwis_status.update({ _id: id }, { gamestatus: 5 });
-        }, 5000);
+    		var id = kwis_status.findOne()._id;
+        kwis_status.update({ _id: id }, {$set: { gamestatus: 5 }});
+        }, 5000);  // 5 second question time... As user entry??
       return true;
     },
     
-    'currentQuestion': function(welke){
-			//var id = kwis_status.findOne({}, { fields: {'currentQuestion':1}})._id;
-			//console.log(id);
-			//var iets = kwis_status.update({ _id: id } , { currentQuestion: welke });
-			//console.log(iets);
-			return true;
+  'nextQuestion': function(){
+		console.log("nextQuestion...");
+		var id = kwis_status.findOne()._id;
+		kwis_status.update({ _id: id }, {$inc: { currentQuestion: 1 }});
+		return id;
 		}
     
 });
