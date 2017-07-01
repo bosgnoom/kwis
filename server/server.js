@@ -105,7 +105,16 @@ Meteor.methods({
 		var id = kwis_status.findOne()._id;
 		kwis_status.update({ _id: id }, {$inc: { currentQuestion: 1 }});
 		return id;
-		}
+		},
+		
+	'resetKwis': function(){
+  	// Remove all users from system
+    kwis_gebruikers.remove({});
+    
+    // Clear game state
+    kwis_status.remove({});
+    kwis_status.insert({ gamestatus: 0, thisKwis: null, currentQuestion: 0 });
+		}    
     
 });
 

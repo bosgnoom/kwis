@@ -79,6 +79,8 @@
 	  {{/if}} <!-- Userid -->
 	  
 	{{/if}} <!--statusbeschikbaar -->
+	
+	{{>resetknop}}
 </template>
 
 <template name="admin_screen">
@@ -113,6 +115,12 @@
 			{{/each}}
 		</ul>
 	{{/if}}  
+</template>
+
+<template name="resetknop">
+	<form class="resetknop">
+		<input type="submit" value="reset">
+	</form>
 </template>
 
 

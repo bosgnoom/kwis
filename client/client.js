@@ -172,4 +172,21 @@ Template.admin_screen.events({
 	
 });
 
+Template.resetknop.events({
+	'submit .resetknop': function(){
+		event.preventDefault();
+		
+		// Remove all Session variables
+		// First set all Session variables to null (reactive)
+		for (prop in Session.keys) {
+			console.log(prop + ": " + Session.get(prop));
+			Session.set(prop, null);
+		}
+		// Then, remove all keys (not reactive)
+		Session.keys = {};
+		
+		var iets = Meteor.call('resetKwis');		
+	}
+
+});
 
