@@ -67,6 +67,10 @@ Template.questionRoom.helpers({
 		var vraag = kwis_vragen.find({ kwisId: Session.get('activeKwis')}).fetch()[nr];
 		console.dir(vraag);
 		return vraag.vraag;
+	},
+	
+	'currentQuestionNumber': function(){
+		return kwis_status.findOne().currentQuestion + 1;
 	}
 
 });
@@ -95,16 +99,16 @@ Template.answerRoom.helpers({
 		//console.dir(vraag);
 		switch (vraag.goede) {
 			case "1": 
-				return vraag.antwoord1;
+				return "A: " + vraag.antwoord1;
 				break;
 			case "2":
-				return vraag.antwoord2;
+				return "B: " + vraag.antwoord2;
 				break;
 			case "3":
-				return vraag.antwoord3;
+				return "C: " + vraag.antwoord3;
 				break;
 			case "4":
-				return vraag.antwoord4;
+				return "D: " + vraag.antwoord4;
 				break;
 			default:
 				return "Er is iets mis gegaan met het antwoord...";

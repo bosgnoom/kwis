@@ -48,9 +48,7 @@
 	{{#if isHost}}
 		{{startTimer}}
 		<h2>Host</h2>
-		Hier komt een vraag... 
-		Aantal vragen: {{questionCount}}<br>
-		De vraag: {{currentQuestion}}
+		Vraag {{currentQuestionNumber}}: {{currentQuestion}}
 	{{else}}
 		<h2>Speler</h2>
 		Nu antwoord geven...
@@ -61,9 +59,10 @@
 	<!-- Game state: 5 -->
 	{{#if isHost}}
 		<h2>Host</h2>
-		Hier komt het antwoord... <br>
-		{{currentAnswer}}
-		
+		<p>
+			Het goede antwoord is: {{currentAnswer}}
+		</p>
+		<p>
 		{{#if notEndgame}}
 			<form class="nextQuestion">
 				<input type="submit" value="Next question">
@@ -74,7 +73,8 @@
 				<input type="submit" value="Naar de uitslag">
 			</form>
 		{{/if}}
-		
+		</p>
+				
 	{{else}}
 		<h2>Speler</h2>
 		Dit was het antwoord...
