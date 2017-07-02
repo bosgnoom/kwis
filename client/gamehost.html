@@ -1,0 +1,89 @@
+<template name="chooseKwis">
+	<!-- Game state: 2 -->
+	<h2>Host</h2>
+	<p>
+	      Hallo, spelmeester! Veel plezier!
+	      Fase 1: Wachten op spelers, overzicht wie er allemaal is. Game state 3. 
+	      Fase 2: Het spel start
+	      Fase 3: Er komt een vraag op het scherm
+	      Fase 4: De spelers kunnen een keuze maken (met een time-out)
+	      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
+	              En misschien hoeveel punten
+	      Fase 6: Fase 3-4-5 tot aan de laatste vraag
+	      Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
+	              Wie heeft er verloren?
+	</p>
+	<p>Kies een kwis:
+		<ul>
+		{{#each kwisLijst}}
+		<li><a href="#" class="hostKiestKwis">{{naam}}</a></li>
+		{{/each}}
+		</ul>
+	</p>
+</template>
+
+<template name="waitRoom">
+	<!-- Game state: 3 -->
+	{{#if isHost}}
+		<h2>Host</h2>
+		<p>List of players:
+			<ul>
+				{{#each spelers}}
+					<li>{{name}}</li>
+				{{/each}}
+			</ul>
+		</p>
+		<p>
+			<form class="startGame">
+				<input type="submit" value="Start game">
+			</form>
+		</p>
+	{{else}}
+		<h2>Speler</h2>
+	{{/if}}
+</template>
+
+<template name="questionRoom">
+	<!-- Game state: 4 -->
+	{{#if isHost}}
+		{{startTimer}}
+		<h2>Host</h2>
+		Hier komt een vraag... 
+		Aantal vragen: {{questionCount}}<br>
+		De vraag: {{currentQuestion}}
+	{{else}}
+		<h2>Speler</h2>
+		Nu antwoord geven...
+	{{/if}}	
+</template>
+
+<template name="answerRoom">
+	<!-- Game state: 5 -->
+	{{#if isHost}}
+		<h2>Host</h2>
+		Hier komt het antwoord... <br>
+		{{currentAnswer}}
+		
+		{{#if notEndgame}}
+			<form class="nextQuestion">
+				<input type="submit" value="Next question">
+			</form>
+		{{else}}
+			Spel klaar, klik voor endgame
+			<form class="gotoEndgame">
+				<input type="submit" value="Naar de uitslag">
+			</form>
+		{{/if}}
+		
+	{{else}}
+		<h2>Speler</h2>
+		Dit was het antwoord...
+	{{/if}}	
+</template>
+
+<template name="endgame">
+	<!-- Game state: 6 -->
+	Game over...
+</template>	
+
+

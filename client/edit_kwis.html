@@ -1,0 +1,63 @@
+<!-- Here the stuff for editing a kwis -->
+
+<template name="editingKwis">
+	<br>
+	Editing kwis... {{deKwis}}
+	<p>
+	<form class="editingKwis">
+		Kwisnaam: <input name="naam" type="text" value="{{deKwis}}">
+		<button type="submit">Naam veranderen</button>
+		<a class="cancel" href="#">Klaar</a>
+	</form>
+	</p>
+	
+	<h3>Vragen</h3>
+	{{#if isVraagAanHetMaken}}
+	  	<form class="VraagMaken">
+	  		<table>
+	  			<tr>
+	  				<td>Vraag:</td>
+  					<td></td>
+  					<td><input name="VraagNaam" type="text" size="50" value={{deVraag}}></td>
+					</tr>
+					<tr>
+						<td>Antwoorden:</td>
+						<td><input type="radio" name="goede" value="1"></td>
+						<td><input type="text" name="antwoord1" size="50"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="radio" name="goede" value="2"></td>
+						<td><input type="text" name="antwoord2" size="50"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="radio" name="goede" value="3"></td>
+						<td><input type="text" name="antwoord3" size="50"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="radio" name="goede" value="4"></td>
+						<td><input type="text" name="antwoord4" size="50"></td>
+					</tr>
+  				</table>
+	  			<button type="submit">Add</button>
+	  			<a class="CancelVraag" href="#">Cancel</a>
+			</form>
+		{{else}}
+			<a class="CreateVraag" href="#">Vraag toevoegen</a>
+		{{/if}}
+		<p></p>
+	<ul>
+		{{#each vragenVanDeKwis}}
+			<li>
+				{{vraag}}
+				<a href="#" class="edit_vraag">Edit</a>
+				<a href="#" class="del_vraag">(X)</a>
+			</li>			
+		{{/each}}
+	</ul>
+</template>
+
+
+					
