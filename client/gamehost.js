@@ -75,6 +75,16 @@ Template.questionRoom.helpers({
 
 });
 
+Template.questionRoom.events({
+	'click .antwoorden': function(event, tracker){
+		console.dir(event);
+		console.dir(tracker);
+		console.dir(this);
+		console.log(event.target.innerHTML);
+	}
+
+});
+
 Template.answerRoom.helpers({
 	'isHost': function(){
 		return Session.get('isHost');
@@ -136,6 +146,10 @@ Template.answerRoom.events({
 	'submit .gotoEndgame': function(){
 		Meteor.call('update_gamestatus', 6);
 		return true;
+	},
+	
+	'.click': function(){
+		console.log(this);
 	}
 
 
