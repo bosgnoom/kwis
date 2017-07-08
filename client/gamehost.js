@@ -64,7 +64,10 @@ Template.questionRoom.helpers({
 	'currentQuestion': function(){
 		//console.log("vraag");
 		var nr = kwis_status.findOne().currentQuestion;
-		var vraag = kwis_vragen.find({ kwisId: Session.get('activeKwis')}).fetch()[nr];
+		var vraag = kwis_vragen.find(
+			{ kwisId: Session.get('activeKwis')},
+			{ sort: { volgorde: 1}}
+			).fetch()[nr];
 		console.dir(vraag);
 		return vraag.vraag;
 	},
@@ -104,7 +107,10 @@ Template.answerRoom.helpers({
 	'currentAnswer': function(){
 		var nr = kwis_status.findOne().currentQuestion;
 		console.log("nr: " + nr);
-		var vraag = kwis_vragen.find({ kwisId: Session.get('activeKwis')}).fetch()[nr];
+		var vraag = kwis_vragen.find(
+			{ kwisId: Session.get('activeKwis')}, 
+			{sort: { volgorde: 1 }}
+			).fetch()[nr];
 		console.dir(vraag);
 		//console.dir(vraag);
 		switch (vraag.goede) {

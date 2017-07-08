@@ -48,15 +48,25 @@
 			<a class="CreateVraag" href="#">Vraag toevoegen</a>
 		{{/if}}
 		<p></p>
-	<ul>
-		{{#each vragenVanDeKwis}}
-			<li>
-				{{vraag}}
-				<a href="#" class="edit_vraag">Edit</a>
-				<a href="#" class="del_vraag">(X)</a>
-			</li>			
-		{{/each}}
-	</ul>
+		<table>
+			<tr>
+				<th>Nr</th>
+				<th>Vraag</th>
+				<th>Opties</th>
+			</tr>
+			{{#each vragenVanDeKwis}}
+				<tr>
+					<td>{{volgorde}}</td>
+					<td>{{vraag}}</td>
+					<td>
+						<a href="#" class="edit_vraag">Edit</a>
+						<a href="#" class="up_vraag">&#9650;</a>
+						<a href="#" class="down_vraag">&#9660;</a>				
+						<a href="#" class="del_vraag">(X)</a>
+					</td>
+				</tr>
+			{{/each}}
+		</table>
 </template>
 
 

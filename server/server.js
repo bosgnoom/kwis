@@ -84,6 +84,19 @@ Meteor.methods({
 			return iets;
 		},
 		
+		'up_vraag': function(vraagId){
+			console.log('Vraag omhoog');
+			var iets = kwis_vragen.update({ _id: vraagId}, {$inc: { volgorde: -1 }});
+			return iets;
+		},
+		
+		'down_vraag': function(vraagId){
+			console.log('Vraag omlaag');
+			var iets = kwis_vragen.update({ _id: vraagId}, {$inc: { volgorde: 1 }});
+			return iets;
+		},
+		
+		
 	'thisKwis': function(kwisId){
 		console.log("Kwis: " & kwisId);
 		var id = kwis_status.findOne()._id;

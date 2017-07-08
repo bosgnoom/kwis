@@ -18,7 +18,10 @@ Template.editingKwis.helpers({
 	},
 	
 	'vragenVanDeKwis': function(){
-		return kwis_vragen.find({ kwisId: Session.get('editedKwisId')});
+		return kwis_vragen.find(
+			{ kwisId: Session.get('editedKwisId')}, 
+			{ sort: { volgorde: 1 }}
+		);
 	},
 	
 	'isVraagAanHetMaken': function(){
@@ -90,9 +93,17 @@ Template.editingKwis.events({
 	},
 	
 	'click a.edit_vraag': function(){
-		//console.log("Vraag veranderen: " + this._id);
 		Session.set('editedVraag', this._id);
-	}	
+	},
+	
+	'click a.up_vraag': function(){
+		Meteor.call('up_vraag', this._id);
+	},
+	
+	'click a.down_vraag': function(){
+		Meteor.call('down_vraag', this._id);
+	}
+		
 
 });
 
