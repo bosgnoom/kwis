@@ -106,9 +106,24 @@ Meteor.methods({
 		
 		'startTimer': function(){
 			console.log("Timer gestart...");
+			var id = kwis_status.findOne()._id;
+			kwis_status.update({ _id: id}, {$set: { currentAnswer: false }});
 			Meteor.setTimeout(function(){
+				// Set gamestatus to 5 (AnswerRoom) when timer expires
     		var id = kwis_status.findOne()._id;
         kwis_status.update({ _id: id }, {$set: { gamestatus: 5 }});
+        
+        // Set currentAnswer to give player feedback
+        var nr = kwis_status.findOne().currentQuestion;
+        console.log("Antwoord zoeken, nr: " + nr);
+        var kwisId = kwis_status.findOne().thisKwis;
+				var vraag = kwis_vragen.find(
+					{ kwisId: kwisId }, 
+					{sort: { volgorde: 1 }}
+					).fetch()[nr];
+				console.log("Antwoord zoeken, vraag: " + vraag);
+				kwis_status.update({ _id: id}, {$set: { currentAnswer: vraag.goede }});
+				
         }, 5000);  // 5 second question time... As user entry??
       return true;
     },

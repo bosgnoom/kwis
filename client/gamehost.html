@@ -2,12 +2,7 @@
 	<!-- Game state: 2 -->
 	<h2>Host</h2>
 	<p>
-	      Hallo, spelmeester! Veel plezier!
-	      Fase 1: Wachten op spelers, overzicht wie er allemaal is. Game state 3. 
-	      Fase 2: Het spel start
-	      Fase 3: Er komt een vraag op het scherm
-	      Fase 4: De spelers kunnen een keuze maken (met een time-out)
-	      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
+      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
 	              En misschien hoeveel punten
 	      Fase 6: Fase 3-4-5 tot aan de laatste vraag
 	      Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
@@ -51,20 +46,24 @@
 		Vraag {{currentQuestionNumber}}: {{currentQuestion}}
 	{{else}}
 		<h2>Speler</h2>
-		Nu antwoord geven...
+		{{resetPlayerAnswer}}
 		<p>
-			<form class="playerAnswer">
-				<table class="antwoorden" style="width:100%">
-					<tr>
-						<td style="background-color: green;" >A</td>
-						<td style="background-color: steelblue;" >B</td>
-					</tr>
-					<tr>
-						<td style="background-color: gold;" >C</td>
-						<td style="background-color: red;" >D</td>
-					</tr>
-				</table>
-			</form>
+			{{#if playerAnswer}}
+				{{>playerAnswerScreen}}
+			{{else}}
+				<form class="playerAnswer">
+					<table class="answer" style="width:100%">
+						<tr>
+							<td class="answers" style="background-color: green;" >A</td>
+							<td class="answers" style="background-color: steelblue;" >B</td>
+						</tr>
+						<tr>
+							<td class="answers" style="background-color: gold;" >C</td>
+							<td class="answers" style="background-color: red;" >D</td>
+						</tr>
+					</table>
+				</form>
+			{{/if}}
 		</p>
 	{{/if}}	
 </template>
@@ -91,8 +90,17 @@
 				
 	{{else}}
 		<h2>Speler</h2>
-		Dit was het antwoord...
+		{{>playerAnswerScreen}}
 	{{/if}}	
+</template>
+
+<template name="playerAnswerScreen">
+	<!-- Player answer, small template to avoid double programming -->
+	<table class="answer" style="width:100%">
+		<tr>
+			<td class="answer" style="background-color: {{answerColor}};">{{playerAnswer}}</td>
+		</tr>
+	</table>
 </template>
 
 <template name="endgame">

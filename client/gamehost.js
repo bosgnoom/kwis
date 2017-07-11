@@ -74,16 +74,21 @@ Template.questionRoom.helpers({
 	
 	'currentQuestionNumber': function(){
 		return kwis_status.findOne().currentQuestion + 1;
+	},
+	
+	'resetPlayerAnswer': function(){
+		Session.set('playerAnswer', null);
+	},
+	
+	'playerAnswer': function(){
+		return Session.get('playerAnswer');
 	}
 
 });
 
 Template.questionRoom.events({
-	'click .antwoorden': function(event, tracker){
-		console.dir(event);
-		console.dir(tracker);
-		console.dir(this);
-		console.log(event.target.innerHTML);
+	'click .answer': function(event){
+		Session.set('playerAnswer', event.target.innerHTML);
 	}
 
 });
@@ -159,6 +164,33 @@ Template.answerRoom.events({
 	}
 
 
+});
+
+Template.playerAnswerScreen.helpers({
+	'answerColor': function(){
+		var iets = kwis_status.findOne().currentAnswer;
+		var goedAntwoord = 'ABCD'[iets-1]
+		console.log("Goed antwoord: " + goedAntwoord);
+		var antwoord = Session.get('playerAnswer');
+		console.log("Antwoord gegeven: " + antwoord);
+		
+		if (iets) {
+			// timer has ended
+			if (antwoord === goedAntwoord) {
+				return "green";
+			} else {
+				return "red";
+			}
+		} else {
+			// waiting for timer to end
+			return "grey";
+		}
+	},
+	
+	'playerAnswer': function(){
+		return Session.get('playerAnswer');
+	}
+	
 });
 
 
