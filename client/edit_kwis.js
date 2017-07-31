@@ -32,6 +32,8 @@ Template.editingKwis.helpers({
 		var iets = kwis_vragen.findOne({ _id: Session.get('editedVraag')});
 		return iets.vraag;
 	}
+	
+	// Antwoorden 1-4 terug geven
 
 });
 

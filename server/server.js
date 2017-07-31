@@ -124,7 +124,7 @@ Meteor.methods({
 				console.log("Antwoord zoeken, vraag: " + vraag);
 				kwis_status.update({ _id: id}, {$set: { currentAnswer: vraag.goede }});
 				
-        }, 5000);  // 5 second question time... As user entry??
+        }, 10000);  // 5 second question time... As user entry??
       return true;
     },
     

@@ -11,17 +11,17 @@
 </body>
 
 <template name="welkom">
-	<h1>Welkom bij de kwis!</h1>
+	<!-- Hier komt een header/berichtje. Een naam? -->
 </template>
 
 <template name="kieseenrol">
 	{{#if statusbeschikbaar}}
-  	<!-- Show status, to be removed in final version -->
-		Gamestatus: {{gamestatus}}<br>
+  	<!-- Show status, to be removed in final version 
+		Gamestatus: {{gamestatus}}<br> -->
 
 		{{#if thereisanuserId}}
 			<!-- to be removed in final version -->
-			Hallo {{username}} ({{userId}})<br>
+			Hallo {{username}} <!-- ({{userId}}) --> <br>
   	
 			<!-- Check for the various gamestates -->
 			{{#if gamestatusIs 0 }}
