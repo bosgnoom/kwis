@@ -1,0 +1,22 @@
+td.answers {
+	padding: 5%;
+	text-align: center;
+	border: 1px solid black;
+	font-size: 250%;
+	font-weight: bold;
+	
+}
+
+td.answer {
+	padding: 10%;
+	text-align: center;
+	border: 1px solid black;
+	font-size: 500%;
+	font-weight: bold;
+}
+
+table.answer {
+	border-spacing: 15px;
+}
+
+
