@@ -67,38 +67,44 @@ Meteor.methods({
   	
   	'vraagToevoegen': function(kwisId, vraag, antwoord1, antwoord2, 
 					antwoord3, antwoord4, goede){
-			console.log("Vraag toevoegen");
+			//console.log("Vraag toevoegen");
+			var hoogste = kwis_vragen.findOne({ kwisId: kwisId }, {sort: {volgorde: -1}});
+		    if (!hoogste) {
+		        //There is no "hoogste found", defaulting to 0
+		        hoogste = { volgorde:0 };
+	        }
 			var iets = kwis_vragen.insert({ kwisId: kwisId, 
 					vraag: vraag,
 					antwoord1: antwoord1,
 					antwoord2: antwoord2,
 					antwoord3: antwoord3,
 					antwoord4: antwoord4,
-					goede: goede });
+					goede: goede,
+					volgorde: hoogste.volgorde + 1 });
 			return iets;
 		},
 		
 		'verwijderVraag': function(vraagId){
-			console.log("Vraag verwijderen");
+			//console.log("Vraag verwijderen");
 			var iets = kwis_vragen.remove({ _id: vraagId });
 			return iets;
 		},
 		
 		'up_vraag': function(vraagId){
-			console.log('Vraag omhoog');
+			//console.log('Vraag omhoog');
 			var iets = kwis_vragen.update({ _id: vraagId}, {$inc: { volgorde: -1 }});
 			return iets;
 		},
 		
 		'down_vraag': function(vraagId){
-			console.log('Vraag omlaag');
+			//console.log('Vraag omlaag');
 			var iets = kwis_vragen.update({ _id: vraagId}, {$inc: { volgorde: 1 }});
 			return iets;
 		},
 		
 		
 	'thisKwis': function(kwisId){
-		console.log("Kwis: " & kwisId);
+		//console.log("Kwis: " & kwisId);
 		var id = kwis_status.findOne()._id;
 		kwis_status.update({ _id: id }, {$set: { thisKwis: kwisId }});
 		return id;
@@ -124,7 +130,7 @@ Meteor.methods({
 				console.log("Antwoord zoeken, vraag: " + vraag);
 				kwis_status.update({ _id: id}, {$set: { currentAnswer: vraag.goede }});
 				
-        }, 10000);  // 5 second question time... As user entry??
+        }, 10000);  // 10 second question time... As user entry??
       return true;
     },
     

@@ -23,3 +23,17 @@ Meteor packages needed:
 - ... (forgot, will be added in some time...)
 - msavin:mongol (for testing)
 
+
+TODO list (in dutch):
+Opmerkingen over de kwis
+
+- Uitleg geven bij wachtscherm voor speler
+- Bij antwoord scherm top 3 / laatste 3 scores
+- Uitslag scherm: wie heeft er gewonnen? wie was het snelste? wie het langzaamste?
+- Uitslag scherm: wie heeft er het vaakst niet geantwoord?
+- Balkje tijd afloop
+- Foto of filmpje laten zien tijdens stellen vraag
+- Edit vraag: antwoorden laten zien / functionele edit ipv extra vraag erbij
+
+
+

@@ -151,13 +151,15 @@ Template.admin_screen.events({
 		Session.set('editedKwisId', this._id);
 	},
 	
-  'click a.remove': function(event) {
-  	Meteor.call("verwijderkwis", this._id, function(error, result){
-	    if (error) console.log("Error: " + error);
-      if (result) {
-	      console.log("verwijderkwis: " + result);
-      }
-    });
+    'click a.remove': function(event){
+        if (confirm("Weet je het zeker dat de kwis verwijderd moet worden?")) {
+      	    Meteor.call("verwijderkwis", this._id, function(error, result){
+	            if (error) console.log("Error: " + error);
+                if (result) {
+                    console.log("verwijderkwis: " + result);
+                }
+            });
+        }
 	},
 	
 	'submit form.Creatingkwis': function(event) {

@@ -16,12 +16,8 @@
 
 <template name="kieseenrol">
 	{{#if statusbeschikbaar}}
-  	<!-- Show status, to be removed in final version 
-		Gamestatus: {{gamestatus}}<br> -->
-
 		{{#if thereisanuserId}}
-			<!-- to be removed in final version -->
-			Hallo {{username}} <!-- ({{userId}}) --> <br>
+			<div id="naam">Hallo <b>{{username}}</b> <!-- ({{userId}}) --></div>
   	
 			<!-- Check for the various gamestates -->
 			{{#if gamestatusIs 0 }}
@@ -29,14 +25,25 @@
 				select between: admin, host and user -->
 				<h2>De gameserver is net gestart</h2>
 				<p>
-					Het is nog niet bekend wat je wilt doen, maak daarom hier 
-					beneden een keuze welke <i>rol</i> je graag wilt.
+					Het systeem is net gestart. Maak een keuze welke <i>rol</i>
+					je graag wilt.
 				</p>
 				<p>
 					<form class="kieseenrol">
-						<input type="submit" value="admin">
-						<input type="submit" value="host">
-						<input type="submit" value="user">
+					    <table>
+					        <tr>
+					            <td><input type="submit" value="admin"></td>
+					            <td>Kwissen beheren</td>
+				            </tr>
+				            <tr>
+				                <td><input type="submit" value="host"></td>
+				                <td>Kwis host</td>
+			                </tr>
+			                <tr>
+			                    <td><input type="submit" value="user"></td>
+			                    <td>Kwis speler</td>
+		                    </tr>
+	                    </table>
 					</form>
 				</p>
 			{{/if}}  
@@ -45,7 +52,7 @@
 	    	{{#if userisadmin }}
 	    		{{>admin_screen}}
     		{{else}}
-    			Er is al een admin. Deze heet.... . Een reset knop hier zou handig zijn.
+    			Er is een administrator bezig. Een ogenblik geduld...
 	  		{{/if}}
 	    {{/if}}
         
@@ -85,20 +92,19 @@
 
 <template name="admin_screen">
 	<h2>Administrator</h2>
-  Hier komt een overzicht van welke kwissen er zijn.
-  Daarnaast wordt het mogelijk om een kwis aan te maken, te wijzigen,
-  of te verwijderen.
-	
 	{{#if isEditingKwis}}
 		<!-- See edit_kwis.html -->
 		{{>editingKwis}}
 	{{else}}
-	  <h3>Overzicht van de kwissen:</h3>
+	    Klik op "Kwis toevoegen" om een nieuwe kwis aan te maken. Klik op 
+	    "edit" om een kwis te wijzgen. Als je op "(x)" klikt, wordt de kwis
+        verwijderd.
+	  <h3>Overzicht van de kwissen</h3>
   
 	  {{#if isCreatingkwis}}
 	  	<form class="Creatingkwis">
 	  		<input name="naam" type="text">
-	  		<button type="submit">Submit</button>
+	  		<button type="submit">Add</button>
 	  		<a class="cancel" href="#">Cancel</a>
 			</form>
 		{{else}}
@@ -118,9 +124,11 @@
 </template>
 
 <template name="resetknop">
-	<form class="resetknop">
-		<input type="submit" value="reset">
-	</form>
+    <div id="footer-reset">
+        <form class="resetknop">
+		    <input type="submit" value="reset">
+	    </form>
+    </div>
 </template>
 
 

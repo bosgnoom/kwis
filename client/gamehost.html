@@ -1,13 +1,6 @@
 <template name="chooseKwis">
 	<!-- Game state: 2 -->
-	<h2>Host</h2>
-	<p>
-      Fase 5: Het antwoord komt op het scherm, samen met wie goed/fout zat
-	              En misschien hoeveel punten
-	      Fase 6: Fase 3-4-5 tot aan de laatste vraag
-	      Fase 7: Wie heeft er gewonnen? Wie was het snelste? Wie het langzaamste?
-	              Wie heeft er verloren?
-	</p>
+	<h2>Hallo spelmeester</h2>
 	<p>Kies een kwis:
 		<ul>
 		{{#each kwisLijst}}
@@ -21,17 +14,24 @@
 	<!-- Game state: 3 -->
 	{{#if isHost}}
 		<h2>Host</h2>
-		<p>List of players:
+		<p>
+		  Welkom bij het spel. Laat iedereen het spel laden via deze website 
+		  en hun naam invullen. De namen verschijnen automatisch hier beneden 
+		  in de lijst. Als iedereen er is, kan het spel gestart worden door op 
+		  "Start" te klikken. Misschien een goed moment om uit te leggen hoe 
+		  het spel werkt?
+	    </p>
+		<p>
+			<form class="startGame">
+				<input type="submit" value="Start game">
+			</form>
+		</p>
+		<p>Spelers:
 			<ul>
 				{{#each spelers}}
 					<li>{{name}}</li>
 				{{/each}}
 			</ul>
-		</p>
-		<p>
-			<form class="startGame">
-				<input type="submit" value="Start game">
-			</form>
 		</p>
 	{{else}}
 		<h2>Speler</h2>
@@ -43,7 +43,13 @@
 	{{#if isHost}}
 		{{startTimer}}
 		<h2>Host</h2>
+		<p>
 		Vraag {{currentQuestionNumber}}: {{currentQuestion}}
+		</p>
+		<p>A: {{currentAnswer 1}}</p>
+    	<p>B: {{currentAnswer 2}}</p>
+		<p>C: {{currentAnswer 3}}</p>
+		<p>D: {{currentAnswer 4}}</p>
 	{{else}}
 		<h2>Speler</h2>
 		{{resetPlayerAnswer}}

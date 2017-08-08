@@ -1,11 +1,14 @@
 <!-- Here the stuff for editing a kwis -->
 
 <template name="editingKwis">
-	<br>
-	Editing kwis... {{deKwis}}
+	<p>
+	Kwis "{{deKwis}}" wordt veranderd. Als de naam van de kwis veranderd moet
+	worden, wijzig deze in het invulveld. Klik daarna op "Naam veranderen". 
+	Wanneer alle wijzigingen zijn doorgevoerd, klik op "klaar" om af te sluiten.
+	</p>
 	<p>
 	<form class="editingKwis">
-		Kwisnaam: <input name="naam" type="text" value="{{deKwis}}">
+		Naam van de kwis: <input name="naam" type="text" value="{{deKwis}}">
 		<button type="submit">Naam veranderen</button>
 		<a class="cancel" href="#">Klaar</a>
 	</form>
@@ -13,6 +16,10 @@
 	
 	<h3>Vragen</h3>
 	{{#if isVraagAanHetMaken}}
+	    <p>
+	    Vul de vraag in en de antwoorden. Klik voor het goede antwoord op 
+	    het bolletje om aan te geven welk antwoord goed is. Met "Add" wordt
+	    de vraag toegevoegd. Klik op "Cancel" om de invoer te verwerpen.</p>
 	  	<form class="VraagMaken">
 	  		<table>
 	  			<tr>
@@ -45,28 +52,37 @@
 	  			<a class="CancelVraag" href="#">Cancel</a>
 			</form>
 		{{else}}
+		    <p>
+		    Klik op "vraag toevoegen" om een vraag toe te voegen. Met "edit" 
+		    kan de vraag veranderd worden. Met de pijltjes kan de volgorde van 
+		    de vragen veranderd worden. Klik op "(x)" om een vraag te 
+		    verwijderen.
+		    </p>
+		    <p>
 			<a class="CreateVraag" href="#">Vraag toevoegen</a>
+			</p>
+		    <p>
+		        <table>
+			        <tr>
+				        <th>Nr</th>
+        				<th>Vraag</th>
+		        		<th>Opties</th>
+        			</tr>
+		        	{{#each vragenVanDeKwis}}
+		        		<tr>
+		        			<td>{{volgorde}}</td>
+					        <td>{{vraag}}</td>
+        					<td>
+		        				<a href="#" class="edit_vraag">Edit</a>
+		        				<a href="#" class="up_vraag">&#9650;</a>
+		        				<a href="#" class="down_vraag">&#9660;</a>				
+		        				<a href="#" class="del_vraag">(X)</a>
+		        			</td>
+        				</tr>
+		        	{{/each}}
+        		</table>
+    		</p>
 		{{/if}}
-		<p></p>
-		<table>
-			<tr>
-				<th>Nr</th>
-				<th>Vraag</th>
-				<th>Opties</th>
-			</tr>
-			{{#each vragenVanDeKwis}}
-				<tr>
-					<td>{{volgorde}}</td>
-					<td>{{vraag}}</td>
-					<td>
-						<a href="#" class="edit_vraag">Edit</a>
-						<a href="#" class="up_vraag">&#9650;</a>
-						<a href="#" class="down_vraag">&#9660;</a>				
-						<a href="#" class="del_vraag">(X)</a>
-					</td>
-				</tr>
-			{{/each}}
-		</table>
 </template>
 
 

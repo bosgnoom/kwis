@@ -88,10 +88,12 @@ Template.editingKwis.events({
 	
 	'click a.del_vraag': function(){
 		//console.log(this._id);
-		Meteor.call('verwijderVraag', this._id, function(error, result){
-			if (error) console.log("Error: " + error);
-			if (result) console.log("voegkwisnaamtoe: " + result);
-		});
+		if (confirm("Weet je het zeker?")) {
+		    Meteor.call('verwijderVraag', this._id, function(error, result){
+			    if (error) console.log("Error: " + error);
+			    if (result) console.log("voegkwisnaamtoe: " + result);
+		    });
+	    }
 	},
 	
 	'click a.edit_vraag': function(){

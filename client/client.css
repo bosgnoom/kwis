@@ -3,4 +3,16 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
+#naam {
+    background-color: lightblue;
+    text-align: center;
+    padding: 1%;
+}
+
+#footer-reset {
+    background-color: lightblue;
+    text-align: center;
+    padding: 1%;
+}
+
 

@@ -76,6 +76,18 @@ Template.questionRoom.helpers({
 		return kwis_status.findOne().currentQuestion + 1;
 	},
 	
+	'currentAnswer': function(welke){
+		var nr = kwis_status.findOne().currentQuestion;
+		var vraag = kwis_vragen.find(
+			{ kwisId: Session.get('activeKwis')},
+			{ sort: { volgorde: 1}}
+			).fetch()[nr];
+		if (welke == 1) return vraag.antwoord1;
+		if (welke == 2) return vraag.antwoord2;
+		if (welke == 3) return vraag.antwoord3;
+		if (welke == 4) return vraag.antwoord4;
+    },
+    	
 	'resetPlayerAnswer': function(){
 		Session.set('playerAnswer', null);
 	},
