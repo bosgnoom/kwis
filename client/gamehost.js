@@ -1,5 +1,3 @@
-//Meteor.subscribe('gebruikers');
-
 Template.chooseKwis.helpers({
 
 	'kwisLijst': function(){
@@ -53,9 +51,35 @@ Template.questionRoom.helpers({
 	
 	'startTimer': function(){
 		Meteor.call('startTimer');
+        var elem = document.getElementById("progressBar"); 
+        var width = 100;
+        var progress_id = setInterval(frame, 100);
+        
+        function frame() {
+            var elem = document.getElementById("progressBar"); 
+            if (width > 0) {
+                width--; 
+                elem.style.width = width + '%'; 
+                
+                if ((width < 30) && (width >= 10)) {
+                    elem.style.backgroundColor = "orange";
+                    }
+                if (width < 10) {
+                    elem.style.backgroundColor = "red";
+                    }
+                } else {
+                    clearInterval(progress_id);
+                }
+            } 
+                //else {
+                   // clearInterval(progress_id);
+              //  }
+           // }
+       // }
+
 		//return true;
 	},
-	
+
 	'questionCount': function(){
 		//console.log(Session.get('activeKwis'));
 		return kwis_vragen.find({ kwisId: Session.get('activeKwis') }).count() - 1;

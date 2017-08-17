@@ -19,4 +19,15 @@ table.answer {
 	border-spacing: 15px;
 }
 
+#vraagProgress {
+    width: 100%;
+    background-color: grey;
+}
+
+#progressBar {
+    width: 100%;
+    height: 30px;
+    background-color: green;
+}
+
 
