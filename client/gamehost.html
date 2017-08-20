@@ -87,6 +87,15 @@
 			Het goede antwoord is: {{currentAnswer}}
 		</p>
 		<p>
+		    <ul>
+		        {{#each spelerScores}}
+					<li>{{name}}: {{score}}</li>
+				{{/each}}
+			</ul>
+			
+		</p>
+		
+		<p>
 		{{#if notEndgame}}
 			<form class="nextQuestion">
 				<input type="submit" value="Next question">

@@ -19,7 +19,7 @@ Template.chooseKwis.events({
 Template.waitRoom.helpers({
 
 	'spelers': function(){
-		return kwis_gebruikers.find({ rol: null });
+		return kwis_gebruikers.find({ rol: 'user' });
 	},
 	
 	'isHost': function(){
@@ -57,6 +57,7 @@ Template.questionRoom.helpers({
         
         function frame() {
             var elem = document.getElementById("progressBar"); 
+            console.log("Progress bar element: " + elem);
             if (width > 0) {
                 width--; 
                 elem.style.width = width + '%'; 
@@ -125,6 +126,9 @@ Template.questionRoom.helpers({
 Template.questionRoom.events({
 	'click .answer': function(event){
 		Session.set('playerAnswer', event.target.innerHTML);
+		// return player answer to server
+		Meteor.call('submitPlayerAnswer', Session.get('userId'), event.target.innerHTML);
+		//console.log(Date.now());
 	}
 
 });
@@ -172,6 +176,10 @@ Template.answerRoom.helpers({
 				break;
 			}
 		return false;
+	},
+	
+	'spelerScores': function(){
+		return kwis_gebruikers.find({ rol: 'user' });
 	}
 		
 	
