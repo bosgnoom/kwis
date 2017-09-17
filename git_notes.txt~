@@ -1,4 +1,11 @@
-Start local git: git init
-Set remote: git remote add upstream https://github.com/bosgnoom/kwis.git
-Get remote: git fetch upstream
+git init
+git remote add origin https://github.com/bosgnoom/kwis.git
+git fetch
+git reset origin/master  # this is required if files in the non-empty directory are in the repo
+
+git add *
+git commit -m "test"
+git push --set-upstream origin master
+git push
+
 

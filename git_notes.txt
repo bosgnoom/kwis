@@ -1,7 +1,17 @@
-Start local git: git init
-Set remote: git remote add upstream https://github.com/bosgnoom/kwis.git
-Get remote: git fetch upstream
+Notes about how to connect to git again after reinstalling (read: moving to a
+virtual machine)
 
-Add all files to repository: git add *
-Commit: git commit
-Push: git push
+First set-up git:
+git init
+git remote add origin https://github.com/bosgnoom/kwis.git
+git fetch
+git reset origin/master
+git add *
+git commit -m "test"
+git push --set-upstream origin master
+
+Now regular work can resume:
+git commit -m "work done"
+git push
+
+
