@@ -17,4 +17,9 @@ git push
 Remembering login credentials:
 git config credential.helper store
 
+Fixing untracked files after editing .gitignore:
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+
 
