@@ -25,7 +25,6 @@ Meteor.methods({
     },
     
     'getUserId': function(username){
-        // Add a user to the game, return his/hers userId
         //console.log("New user: " + username);
         var iets = kwis_gebruikers.insert(
             { name: username, score: 0, rol: 'user' });

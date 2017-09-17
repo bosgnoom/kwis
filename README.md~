@@ -18,15 +18,15 @@ Clone this repo into the same directory
 Run app (meteor run)
 
 Remove autopublish: meteor remove autopublish
-Add meteor packages: meteor add <package>
+Add mongol: meteor add msavin:mongol
 
 Meteor packages needed:
 - session
 - reactive-var
+- accounts-password (not used)
 - random
+- ... (forgot, will be added in some time...)
 - msavin:mongol (for testing)
-
-
 
 
 TODO list (in dutch):

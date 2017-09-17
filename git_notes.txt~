@@ -1,0 +1,4 @@
+Start local git: git init
+Set remote: git remote add upstream https://github.com/bosgnoom/kwis.git
+Get remote: git fetch upstream
+
