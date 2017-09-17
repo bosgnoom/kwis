@@ -14,4 +14,7 @@ Now regular work can resume:
 git commit -m "work done"
 git push
 
+Remembering login credentials:
+git config credential.helper store
+
 
