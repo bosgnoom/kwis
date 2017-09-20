@@ -31,10 +31,29 @@ Template.editingKwis.helpers({
 	'deVraag': function(){
 		var iets = kwis_vragen.findOne({ _id: Session.get('editedVraag')});
 		return iets.vraag;
-	}
-	
-	// Antwoorden 1-4 terug geven
+	},
 
+    'hetAntwoord': function(welke_vraag){
+        var iets = kwis_vragen.findOne({ _id: Session.get('editedVraag')});
+        console.log("Het antwoord zoeken...");
+        console.log(iets);
+        var return_value = "";
+        if (welke_vraag == 1) return_value = iets.antwoord1;
+        if (welke_vraag == 2) return_value = iets.antwoord2;
+        if (welke_vraag == 3) return_value = iets.antwoord3;
+        if (welke_vraag == 4) return_value = iets.antwoord4;
+        return return_value;
+    },
+
+    'dezeAankruisen': function(welke_dan){
+        var iets = kwis_vragen.findOne({ _id: Session.get('editedVraag')});
+        if (welke_dan == iets.goede) {
+            return "checked";
+            } 
+        else {
+            return "";
+        }
+    }
 });
 
 Template.editingKwis.events({
@@ -54,6 +73,8 @@ Template.editingKwis.events({
 	
 	'submit form.VraagMaken': function(event){
 		var kwisId = Session.get("editedKwisId");
+        var vraagId = Session.get("editedVraag");
+
 		var vraag = event.target.VraagNaam.value;
 		var antwoord1 = event.target.antwoord1.value;
 		var antwoord2 = event.target.antwoord2.value;
@@ -61,15 +82,25 @@ Template.editingKwis.events({
 		var antwoord4 = event.target.antwoord4.value;
 		var goede = event.target.goede.value;
 		
-		if (goede) { // If there is a radio button selected, most likely the question
-		             // is there...
+        if (goede) { 
+            // If there is a radio button selected, most likely the question
+            // is filled in...
 			//console.log("Vraag toevoegen...");
-			Meteor.call("vraagToevoegen", kwisId, vraag, antwoord1, antwoord2, 
+            if (vraagId) {
+                // There is a question being edited...
+                //console.log("Add method to develop question");
+                Meteor.call("vraagWijzigen", vraagId, vraag, antwoord1, antwoord2,
+                    antwoord3, antwoord4, goede);
+                Session.set("editedVraag", false);
+            } else {
+                // Add a new question
+			    Meteor.call("vraagToevoegen", kwisId, vraag, antwoord1, antwoord2, 
 					antwoord3, antwoord4, goede, function(error, result){
-  			if (error) console.log("Error: " + error);
- 				if (result) console.log("voegkwisnaamtoe: " + result);
-				});
+  			            if (error) console.log("Error: " + error);
+ 				        if (result) console.log("voegkwisnaamtoe: " + result);
+			        });
 			Session.set('isVraagAanHetMaken', false);
+            }
 		}
 	},
 	

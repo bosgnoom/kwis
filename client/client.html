@@ -20,7 +20,7 @@
 	{{#if statusbeschikbaar}}
 		{{#if thereisanuserId}}
 			<div id="naam">
-			    <h1>Hallo {{username}}</h1>
+			    <h1>{{username}}</h1>
 		    </div>
   	
 			<!-- Check for the various gamestates -->
@@ -56,7 +56,7 @@
 	    	{{#if userisadmin }}
 	    		{{>admin_screen}}
     		{{else}}
-    			Er is een administrator bezig. Een ogenblik geduld...
+    			<p>Er is een administrator bezig. Een ogenblik geduld...</p>
 	  		{{/if}}
 	    {{/if}}
         
@@ -93,8 +93,7 @@
 	  {{/if}} <!-- Userid -->
 	  
 	{{/if}} <!--statusbeschikbaar -->
-	
-	{{>resetknop}}
+
 </template>
 
 <template name="admin_screen">
@@ -128,24 +127,17 @@
 			{{/each}}
 		</ul>
 	{{/if}}  
+
+	{{>resetknop}}
+
 </template>
 
 <template name="resetknop">
-    {{#if isAdmin}}
     <div id="footer-reset">
         <form class="resetknop">
 		    <input type="submit" value="reset">
 	    </form>
     </div>
-    {{/if}}
-    {{#if isHost}}
-    <div id="footer-reset">
-        <form class="resetknop">
-		    <input type="submit" value="reset">
-	    </form>
-    </div>
-    {{/if}}
-
 </template>
 
 

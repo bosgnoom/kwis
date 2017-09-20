@@ -82,6 +82,22 @@ Meteor.methods({
 				volgorde: hoogste.volgorde + 1 });
 		return iets;
 	},
+
+    'vraagWijzigen': function(vraagId, vraag, antwoord1, antwoord2,
+  	        antwoord3, antwoord4, goede){
+		console.log("Vraag wijziging...");
+		var iets = kwis_vragen.update({ _id: vraagId},
+            { $set: { 
+				vraag: vraag,
+				antwoord1: antwoord1,
+				antwoord2: antwoord2,
+				antwoord3: antwoord3,
+				antwoord4: antwoord4,
+				goede: goede}
+            });
+        console.log(iets);
+		return iets;
+	},
 		
 	'verwijderVraag': function(vraagId){
         //console.log("Vraag verwijderen");

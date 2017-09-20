@@ -10,6 +10,11 @@ Template.chooseKwis.events({
 
 	'click a.hostKiestKwis': function(){
 		Session.set('activeKwis', this._id);
+        
+        var kwis_naam = kwis_namen.findOne( {_id: this._id} );
+        //console.log(kwis_naam);
+        Session.set('username', kwis_naam.naam);
+
 		Meteor.call('thisKwis', this._id);
 		Meteor.call('update_gamestatus', 3);
 	}
@@ -57,8 +62,8 @@ Template.questionRoom.helpers({
         
         function frame() {
             var elem = document.getElementById("progressBar"); 
-            console.log("Progress bar element: " + elem);
-            if (width > 0) {
+            //console.log("Progress bar element: " + elem);
+            if (width > 0 && elem) {
                 width--; 
                 elem.style.width = width + '%'; 
                 
