@@ -1,12 +1,6 @@
 # kwis
-Single serve Kahoot clone. To be used in an offline application. Very alpha stage. 
-
+Single server Kahoot clone. To be used in an offline application. Very alpha stage. 
 Just to learn a bit about meteor and how to use git...
-
-Do not use for real life applications!
-
-Sorry for the half English/half Dutch...
-
 
 How to use/install:
 
@@ -18,28 +12,18 @@ Clone this repo into the same directory
 Run app (meteor run)
 
 Remove autopublish: meteor remove autopublish
-Add meteor packages: meteor add <package>
 
+Add meteor packages: meteor add <package>
 Meteor packages needed:
 - session
 - reactive-var
 - random
 - msavin:mongol (for testing)
 
-
-
-
 TODO list (in dutch):
-Opmerkingen over de kwis
-
-- Uitleg geven bij wachtscherm voor speler
 - Bij antwoord scherm top 3 / laatste 3 scores
 - Uitslag scherm: wie heeft er gewonnen? wie was het snelste? wie het langzaamste?
 - Uitslag scherm: wie heeft er het vaakst niet geantwoord?
-- Balkje tijd afloop
-- Foto of filmpje laten zien tijdens stellen vraag
-- Edit vraag: antwoorden laten zien / functionele edit ipv extra vraag erbij
-
 
 Notes about using meteor/mongodb:
 * backup database using 'mongodump -o <backup name>

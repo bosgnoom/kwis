@@ -185,8 +185,14 @@ Template.answerRoom.helpers({
 	
 	'spelerScores': function(){
 		return kwis_gebruikers.find({ rol: 'user' });
+	},
+
+	'spelerTopScores': function(){
+		return kwis_gebruikers.find(
+            { rol: 'user' },
+            { sort: { score: -1 }, limit: 5});
 	}
-		
+
 	
 });
 

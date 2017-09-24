@@ -13,7 +13,6 @@
 <template name="waitRoom">
 	<!-- Game state: 3 -->
 	{{#if isHost}}
-		<h2>Host</h2>
 		<p>
 		  Welkom bij het spel. Laat iedereen het spel laden via deze website 
 		  en een naam invullen. De namen verschijnen automatisch hier beneden 
@@ -44,7 +43,6 @@
 	<!-- Game state: 4 -->
 	{{#if isHost}}
 		{{startTimer}}
-		<h2>Host</h2>
 		<p>
 		Vraag {{currentQuestionNumber}}: {{currentQuestion}}
 		</p>
@@ -58,8 +56,7 @@
 	        </div>
         </p>
 	{{else}}
-		<h2>Speler</h2>
-		{{resetPlayerAnswer}}
+    	{{resetPlayerAnswer}}
 		<p>
 			{{#if playerAnswer}}
 				{{>playerAnswerScreen}}
@@ -84,23 +81,21 @@
 <template name="answerRoom">
 	<!-- Game state: 5 -->
 	{{#if isHost}}
-		<h2>Host</h2>
 		<p>
 			Het goede antwoord is: {{currentAnswer}}
 		</p>
 		<p>
-		    <ul>
-		        {{#each spelerScores}}
+            De topspelers:
+		    <ol>
+		        {{#each spelerTopScores}}
 					<li>{{name}}: {{score}}</li>
 				{{/each}}
-			</ul>
-			
+			</ol>
 		</p>
-		
 		<p>
 		{{#if notEndgame}}
 			<form class="nextQuestion">
-				<input type="submit" value="Next question">
+				<input type="submit" value="Naar de volgende vraag">
 			</form>
 		{{else}}
 			Spel klaar, klik voor endgame
@@ -111,7 +106,6 @@
 		</p>
 				
 	{{else}}
-		<h2>Speler</h2>
 		{{>playerAnswerScreen}}
 	{{/if}}	
 </template>
