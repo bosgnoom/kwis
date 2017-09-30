@@ -58,7 +58,7 @@ Template.questionRoom.helpers({
 		Meteor.call('startTimer');
         var elem = document.getElementById("progressBar"); 
         var width = 100;
-        var progress_id = setInterval(frame, 100);
+        var progress_id = setInterval(frame, 200);
         
         function frame() {
             var elem = document.getElementById("progressBar"); 
@@ -192,7 +192,6 @@ Template.answerRoom.helpers({
             { rol: 'user' },
             { sort: { score: -1 }, limit: 5});
 	}
-
 	
 });
 
@@ -247,6 +246,17 @@ Template.playerAnswerScreen.helpers({
 	}
 	
 });
+
+Template.endgame.helpers({
+    'wie_hebben_er_gewonnen': function(){
+        return kwis_gebruikers.find(
+            {rol: 'user'},
+            {sort: {score: -1}, limit: 3});
+    }
+
+});
+
+
 
 
 

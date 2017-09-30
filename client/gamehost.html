@@ -98,8 +98,10 @@
 				<input type="submit" value="Naar de volgende vraag">
 			</form>
 		{{else}}
-			Spel klaar, klik voor endgame
-			<form class="gotoEndgame">
+            <p>
+			Dit was de laatste vraag. Wie zou er gewonnen hebben?
+            </p>			
+            <form class="gotoEndgame">
 				<input type="submit" value="Naar de uitslag">
 			</form>
 		{{/if}}
@@ -121,7 +123,12 @@
 
 <template name="endgame">
 	<!-- Game state: 6 -->
-	Game over...
+    En de winnaars zijn: 
+    <ol>    
+    {{#each wie_hebben_er_gewonnen}}
+        <li>{{name}}</li>
+    {{/each}}
+    </ol>
 </template>	
 
 

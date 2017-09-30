@@ -7,14 +7,8 @@
 </head>
 
 <body>
-	{{>welkom}}
-
 	{{>kieseenrol}}
 </body>
-
-<template name="welkom">
-	<!-- Hier komt een header/berichtje. Een naam? -->
-</template>
 
 <template name="kieseenrol">
 	{{#if statusbeschikbaar}}
@@ -56,13 +50,18 @@
 	    	{{#if userisadmin }}
 	    		{{>admin_screen}}
     		{{else}}
-    			<p>Er is een administrator bezig. Een ogenblik geduld...</p>
+    			<p>
+                    Er is een administrator bezig. Een ogenblik geduld...
+                    Mocht er iets mis zijn gegaan, klik dan op "reset"...
+                </p>
+                {{>resetknop}}
 	  		{{/if}}
 	    {{/if}}
         
 	    {{#if gamestatusIs 2 }}
 	    	<!-- See gamehost.html and .js -->
 	      {{>chooseKwis}}
+          {{>resetknop}}
 	    {{/if}}
 	  
 	    {{#if gamestatusIs 3 }}
@@ -72,12 +71,18 @@
 	    
 	    {{#if gamestatusIs 4 }}
       	<!-- See gamehost.html and .js -->
-      	{{>questionRoom}}
+      	    {{>questionRoom}}
     	{{/if}}
     
 	    {{#if gamestatusIs 5 }}
 	    	<!-- See gamehost.html and .js -->
-      	{{>answerRoom}}
+      	    {{>answerRoom}}
+    	{{/if}}
+
+	    {{#if gamestatusIs 6 }}
+	    	<!-- See gamehost.html and .js -->
+      	{{>endgame}}
+        {{>resetknop}}
     	{{/if}}
 
     {{else}} <!-- Userid -->

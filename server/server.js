@@ -148,23 +148,24 @@ Meteor.methods({
 			kwis_status.update({ _id: id}, {$set: { currentAnswer: vraag.goede }});
 			
 			// Calculate scores for all users
-			// TODO: score = 10000 - (clickTime - startTime)
-			//       als antwoord = goed dan +score
-			var gebruikers = kwis_gebruikers.find({ rol: 'user' });
-			var startTime = kwis_status.findOne().startTime;
-			gebruikers.forEach(function(user){
-			    var score = 10000 - (user.clickTime - startTime);
-			    //console.log("Score: " + score);
-			    //console.log(user.currentAnswer + '--' + vraag.goede);
-			    if (user.currentAnswer == 'ABCD'[vraag.goede-1]) {
-			        kwis_gebruikers.update(user._id, 
-			            { $inc: { score: score }});
+            if (nr > 0) {
+                var gebruikers = kwis_gebruikers.find({ rol: 'user' });
+			    var startTime = kwis_status.findOne().startTime;
+			    gebruikers.forEach(function(user){
+			        var score = 20000 - (user.clickTime - startTime);
+			        //console.log("Score: " + score);
+			        //console.log(user.currentAnswer + '--' + vraag.goede);
+			        if (user.currentAnswer == 'ABCD'[vraag.goede-1] &&
+                        score <= 20000 ) {
+			            kwis_gebruikers.update(user._id, 
+			                { $inc: { score: score }});
 			            
-		        }
-            });
+		                }
+                    });
+                }
 			
 				
-            }, 10000);  // 10 second question time... As user entry??
+            }, 20000);  // 10 second question time... As user entry??
       return true;
     },
     
