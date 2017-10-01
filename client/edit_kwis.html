@@ -65,12 +65,14 @@
 		        <table id="vragenOverzicht">
 			        <tr>
 				        <th>Nr</th>
+                        <th>Id</th>
         				<th>Vraag</th>
 		        		<th>Opties</th>
         			</tr>
 		        	{{#each vragenVanDeKwis}}
 		        		<tr>
-		        			<td>{{volgorde}}</td>
+		        			<td>{{@index}}</td>
+                            <td>{{volgorde}}</td>
 					        <td>{{vraag}}</td>
         					<td>
 		        				<a href="#" class="edit_vraag">Edit</a>
