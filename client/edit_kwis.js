@@ -35,8 +35,8 @@ Template.editingKwis.helpers({
 
     'hetAntwoord': function(welke_vraag){
         var iets = kwis_vragen.findOne({ _id: Session.get('editedVraag')});
-        console.log("Het antwoord zoeken...");
-        console.log(iets);
+        //console.log("Het antwoord zoeken...");
+        //console.log(iets);
         var return_value = "";
         if (welke_vraag == 1) return_value = iets.antwoord1;
         if (welke_vraag == 2) return_value = iets.antwoord2;

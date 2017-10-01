@@ -181,7 +181,7 @@ Template.resetknop.events({
 		// Remove all Session variables
 		// First set all Session variables to null (reactive)
 		for (prop in Session.keys) {
-			console.log(prop + ": " + Session.get(prop));
+			//console.log(prop + ": " + Session.get(prop));
 			Session.set(prop, null);
 		}
 		// Then, remove all keys (not reactive)

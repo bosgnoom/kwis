@@ -1,6 +1,7 @@
 /* CSS declarations go here */
 body {
 	font-family: 'Roboto', sans-serif;
+    font-size: 200%;
 }
 
 table#vragenOverzicht {

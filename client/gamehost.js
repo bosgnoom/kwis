@@ -156,7 +156,7 @@ Template.answerRoom.helpers({
 	
 	'currentAnswer': function(){
 		var nr = kwis_status.findOne().currentQuestion;
-		console.log("nr: " + nr);
+		//console.log("nr: " + nr);
 		var vraag = kwis_vragen.find(
 			{ kwisId: Session.get('activeKwis')}, 
 			{sort: { volgorde: 1 }}
@@ -224,9 +224,9 @@ Template.playerAnswerScreen.helpers({
 	'answerColor': function(){
 		var iets = kwis_status.findOne().currentAnswer;
 		var goedAntwoord = 'ABCD'[iets-1]
-		console.log("Goed antwoord: " + goedAntwoord);
+		//console.log("Goed antwoord: " + goedAntwoord);
 		var antwoord = Session.get('playerAnswer');
-		console.log("Antwoord gegeven: " + antwoord);
+		//console.log("Antwoord gegeven: " + antwoord);
 		
 		if (iets) {
 			// timer has ended

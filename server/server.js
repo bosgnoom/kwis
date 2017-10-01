@@ -125,7 +125,7 @@ Meteor.methods({
 	},
 		
 	'startTimer': function(){
-		console.log("Timer gestart...");
+		//console.log("Timer gestart...");
 		var id = kwis_status.findOne()._id;
 		kwis_status.update({ _id: id}, 
     		{$set: { currentAnswer: false, startTime: Date.now()} });
@@ -187,7 +187,7 @@ Meteor.methods({
 	},
 		
 	'submitPlayerAnswer': function(playerId, playerAnswer){
-		console.log("Player: " + playerId + " Answer: " + playerAnswer);
+		//console.log("Player: " + playerId + " Answer: " + playerAnswer);
 		clickTime = Date.now();
 		kwis_gebruikers.update(
 		    { _id: playerId}, 
