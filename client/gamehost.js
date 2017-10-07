@@ -252,7 +252,16 @@ Template.endgame.helpers({
         return kwis_gebruikers.find(
             {rol: 'user'},
             {sort: {score: -1}, limit: 10});
-    }
+    },
+    
+	'isHost': function(){
+		return Session.get('isHost');
+	},
+	
+	'eind_score': function(){
+        var user_id = Session.get('userId');
+        return kwis_gebruikers.findOne({ _id: user_id }).score;
+    }	    
 
 });
 

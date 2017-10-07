@@ -152,11 +152,11 @@ Meteor.methods({
                 var gebruikers = kwis_gebruikers.find({ rol: 'user' });
 			    var startTime = kwis_status.findOne().startTime;
 			    gebruikers.forEach(function(user){
-			        var score = 25000 - (user.clickTime - startTime);
+			        var score = Math.round((25000 - (user.clickTime - startTime))/250);
 			        //console.log("Score: " + score);
 			        //console.log(user.currentAnswer + '--' + vraag.goede);
 			        if (user.currentAnswer == 'ABCD'[vraag.goede-1] &&
-                        score <= 25000 ) {
+                        score <= 100 ) {
 			            kwis_gebruikers.update(user._id, 
 			                { $inc: { score: score }});
 			            

@@ -125,14 +125,20 @@
 
 <template name="endgame">
 	<!-- Game state: 6 -->
-    En de winnaars zijn: 
-    <ol>    
-    {{#each wie_hebben_er_gewonnen}}
-        <li>{{name}}</li>
-    {{/each}}
-    </ol>
     {{#if isHost}}
-        {{>resetknop}}
+	    <p>De einduitslag:</p>
+        <p>
+            <ol>
+                {{#each wie_hebben_er_gewonnen}}
+                    <li>{{name}}: {{score}}</li>
+                {{/each}}
+            </ol>
+        </p>
+        <p>
+            {{>resetknop}}
+        </p>
+    {{else}}
+        <p>Jouw score: {{eind_score}}</p>
     {{/if}}
 </template>	
 
