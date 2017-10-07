@@ -101,36 +101,57 @@
 </template>
 
 <template name="admin_screen">
-	<h2>Administrator</h2>
+	<!-- <h2>Administrator</h2> -->
 	{{#if isEditingKwis}}
 		<!-- See edit_kwis.html -->
 		{{>editingKwis}}
-	{{else}}
-	    Klik op "Kwis toevoegen" om een nieuwe kwis aan te maken. Klik op 
-	    "edit" om een kwis te wijzgen. Als je op "(x)" klikt, wordt de kwis
-        verwijderd.
-	  <h3>Overzicht van de kwissen</h3>
-  
-	  {{#if isCreatingkwis}}
-	  	<form class="Creatingkwis">
-	  		<input name="naam" type="text">
-	  		<button type="submit">Toevoegen</button>
-	  		<a class="cancel" href="#">Annuleren</a>
-			</form>
-		{{else}}
-			<a class="create" href="#">Kwis toevoegen</a>
-		{{/if}}
 
-	  <ul>
-	  	{{#each kwis_titels}}
-	  		<li class="kwisnaam">
-					{{naam}}
-					<a class="edit" href="#">Wijzigen</a>
-  				<a class="remove" href="#">(x)</a>
-			</li>
-			{{/each}}
-		</ul>
-	{{/if}}  
+	{{else}}
+	    {{#if isPrintingKwis}}
+	        <p>
+	        <ol>
+	            {{#each vragen_van_de_kwis}}
+	                <li>{{vraag}}</li>
+	                <ol type='A'>
+	                    <li>{{antwoord1}}</li>
+	                    <li>{{antwoord2}}</li>
+	                    <li>{{antwoord3}}</li>
+	                    <li>{{antwoord4}}</li>
+                    </ol>
+                    <br>
+	            {{/each}}
+	        </ol>
+	        </p>
+        {{else}}
+	
+    	    Klik op "Kwis toevoegen" om een nieuwe kwis aan te maken. Klik op 
+    	    "edit" om een kwis te wijzgen. Als je op "(x)" klikt, wordt de kwis
+            verwijderd.
+            
+            <h3>Overzicht van de kwissen</h3>
+  
+	        {{#if isCreatingkwis}}
+	      	    <form class="Creatingkwis">
+	      		    <input name="naam" type="text">
+	      		    <button type="submit">Toevoegen</button>
+        	  		<a class="cancel" href="#">Annuleren</a>
+	    		</form>
+	    	{{else}}
+	    		<a class="create" href="#">Kwis toevoegen</a>
+	    	{{/if}}
+
+	          <ul>
+    	  	{{#each kwis_titels}}
+	      		<li class="kwisnaam">
+	    		    {{naam}}
+	    			<a class="edit" href="#">Wijzigen</a>
+	    			<a class="printen" href="#">Printen</a>
+	    		    <a class="remove" href="#">(x)</a>
+	    		</li>
+    		{{/each}}
+	    	</ul>
+	    {{/if}}  
+    {{/if}}
 
 	{{>resetknop}}
 

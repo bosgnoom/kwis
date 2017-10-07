@@ -127,7 +127,16 @@ Template.admin_screen.helpers({
 	isEditingKwis: function(){
 		//return Session.get('editedKwisId') === this._id;
 		return Session.get('editedKwisId') != null;
-	}
+	},
+	
+	isPrintingKwis: function(){
+	    return Session.get('printKwisId') != null;
+    },
+    
+    vragen_van_de_kwis: function(){
+        var kwis = Session.get('printKwisId');
+        return kwis_vragen.find( { kwisId: kwis } );
+    }
 });
 
 Template.admin_screen.events({
@@ -150,6 +159,11 @@ Template.admin_screen.events({
 		//console.log("Going to edit kwis");
 		Session.set('editedKwisId', this._id);
 	},
+	
+	'click a.printen': function(event){
+	    Session.set('username', this.naam);
+	    Session.set('printKwisId', this._id);
+    },
 	
     'click a.remove': function(event){
         if (confirm("Weet je het zeker dat de kwis verwijderd moet worden?")) {

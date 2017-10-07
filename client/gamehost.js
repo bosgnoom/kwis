@@ -58,7 +58,7 @@ Template.questionRoom.helpers({
 		Meteor.call('startTimer');
         var elem = document.getElementById("progressBar"); 
         var width = 100;
-        var progress_id = setInterval(frame, 200);
+        var progress_id = setInterval(frame, 250);
         
         function frame() {
             var elem = document.getElementById("progressBar"); 

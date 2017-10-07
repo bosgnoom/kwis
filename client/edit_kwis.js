@@ -53,6 +53,20 @@ Template.editingKwis.helpers({
         else {
             return "";
         }
+    },
+    
+    'aantalKerenAntwoord': function(ABCofD){
+        // Needs fixing, but this is quick n dirty
+        //console.log("Welk antwoord zoeken: " + ABCofD);
+        if (ABCofD == 1) deze = '1';
+        if (ABCofD == 2) deze = '2';
+        if (ABCofD == 3) deze = '3';
+        if (ABCofD == 4) deze = '4';
+        var iets = kwis_vragen.find(
+            { kwisId: Session.get('editedKwisId'),
+              goede: deze}).count();
+        //console.log(iets);
+        return iets;
     }
 });
 
