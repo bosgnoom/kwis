@@ -1,7 +1,7 @@
 /* CSS declarations go here */
-body {
+body,input {
 	font-family: 'Roboto', sans-serif;
-    font-size: 200%;
+    font-size: 150%;
 }
 
 table#vragenOverzicht {

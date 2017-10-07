@@ -190,7 +190,7 @@ Template.answerRoom.helpers({
 	'spelerTopScores': function(){
 		return kwis_gebruikers.find(
             { rol: 'user' },
-            { sort: { score: -1 }, limit: 5});
+            { sort: { score: -1 }, limit: 10});
 	}
 	
 });
@@ -251,7 +251,7 @@ Template.endgame.helpers({
     'wie_hebben_er_gewonnen': function(){
         return kwis_gebruikers.find(
             {rol: 'user'},
-            {sort: {score: -1}, limit: 3});
+            {sort: {score: -1}, limit: 10});
     }
 
 });

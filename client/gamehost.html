@@ -20,6 +20,8 @@
 		  "Start" te klikken. Misschien een goed moment om uit te leggen hoe 
 		  het spel werkt?
 	    </p>
+	    <p>Maak eerst verbinding met het draadloze net werk "Verhaegh"</p>
+	    <p>Ga dan in je internet naar het adres http://10.0.0.2:3000</p>
 		<p>
 			<form class="startGame">
 				<input type="submit" value="Spel starten">
@@ -84,29 +86,29 @@
 		<p>
 			Het goede antwoord is: {{currentAnswer}}
 		</p>
-		<p>
-            De topspelers:
-		    <ol>
-		        {{#each spelerTopScores}}
-					<li>{{name}}: {{score}}</li>
-				{{/each}}
-			</ol>
-		</p>
-		<p>
 		{{#if notEndgame}}
-			<form class="nextQuestion">
-				<input type="submit" value="Naar de volgende vraag">
-			</form>
+    		<p>
+                De topspelers:
+    		    <ol>
+    		        {{#each spelerTopScores}}
+    					<li>{{name}}: {{score}}</li>
+    				{{/each}}
+    			</ol>
+    		</p>
+    		<p>
+    			<form class="nextQuestion">
+    				<input type="submit" value="Naar de volgende vraag">
+        		</form>
+    		</p>
 		{{else}}
             <p>
-			Dit was de laatste vraag. Wie zou er gewonnen hebben?
+    			Dit was de laatste vraag. Wie zou er gewonnen hebben?
             </p>			
             <form class="gotoEndgame">
 				<input type="submit" value="Naar de uitslag">
 			</form>
 		{{/if}}
-		</p>
-				
+	
 	{{else}}
 		{{>playerAnswerScreen}}
 	{{/if}}	
@@ -129,6 +131,7 @@
         <li>{{name}}</li>
     {{/each}}
     </ol>
+    {{>resetknop}}
 </template>	
 
 
