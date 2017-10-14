@@ -16,4 +16,21 @@ body,input {
     padding: 1%;
 }
 
+h1 {
+    font-family: 'BungeeShade-Regular', 'Roboto', sans-serif;
+    font-size: 175%;
+}
+
+@font-face {
+    font-family: 'BungeeShade-Regular';
+    src: url('/fonts/BungeeShade-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto-Medium.ttf');
+}
+
+
+
 

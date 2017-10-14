@@ -13,27 +13,29 @@
 <template name="waitRoom">
 	<!-- Game state: 3 -->
 	{{#if isHost}}
-		<p>
-		  Welkom bij het spel. Laat iedereen het spel laden via deze website 
-		  en een naam invullen. De namen verschijnen automatisch hier beneden 
-		  in de lijst. Als iedereen er is, kan het spel gestart worden door op 
-		  "Start" te klikken. Misschien een goed moment om uit te leggen hoe 
-		  het spel werkt?
-	    </p>
-	    <p>Maak eerst verbinding met het draadloze net werk "Verhaegh"</p>
-	    <p>Ga dan in je internet naar het adres http://kwis.verhaegh</p>
-		<p>
-			<form class="startGame">
-				<input type="submit" value="Spel starten">
-			</form>
-		</p>
-		<p>Spelers:
-			<ul>
-				{{#each spelers}}
-					<li>{{name}}</li>
-				{{/each}}
-			</ul>
-		</p>
+	    <table>
+	        <tr>
+	            <td valign="top">
+	                <p>Welkom bij het spel!</p>
+	                <p>Maak met je telefoon een verbinding met het draadloze netwerk "Verhaegh"</p>
+	                <p>Ga dan op internet naar het adres: http://kwis.verhaegh</p>
+	                <p>
+			            <form class="startGame">
+				            <input type="submit" value="Spel starten">
+			            </form>
+		            </p>
+		
+		        </td>
+		        <td valign="top">
+		            <p>Spelers:</p>
+			        <ul>
+				        {{#each spelers}}
+					        <li>{{name}}</li>
+        				{{/each}}
+		        	</ul>
+                </td>
+		    </tr>
+		</table>
         {{>resetknop}}
 	{{else}}
 		Welkom bij het spel! Nog even geduld, we wachten op de medespelers.

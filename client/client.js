@@ -135,7 +135,9 @@ Template.admin_screen.helpers({
     
     vragen_van_de_kwis: function(){
         var kwis = Session.get('printKwisId');
-        return kwis_vragen.find( { kwisId: kwis } );
+        return kwis_vragen.find(
+            { kwisId: kwis },
+            { sort: { volgorde:1 }});
     }
 });
 

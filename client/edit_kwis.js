@@ -132,7 +132,6 @@ Template.editingKwis.events({
 	},
 	
 	'click a.del_vraag': function(){
-		//console.log(this._id);
 		if (confirm("Weet je het zeker?")) {
 		    Meteor.call('verwijderVraag', this._id, function(error, result){
 			    if (error) console.log("Error: " + error);

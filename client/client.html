@@ -105,7 +105,7 @@
 	{{#if isEditingKwis}}
 		<!-- See edit_kwis.html -->
 		{{>editingKwis}}
-
+    	{{>resetknop}}
 	{{else}}
 	    {{#if isPrintingKwis}}
 	        <p>
@@ -150,11 +150,9 @@
 	    		</li>
     		{{/each}}
 	    	</ul>
+    		{{>resetknop}}
 	    {{/if}}  
     {{/if}}
-
-	{{>resetknop}}
-
 </template>
 
 <template name="resetknop">
