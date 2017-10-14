@@ -18,7 +18,7 @@
 	            <td valign="top">
 	                <p>Welkom bij het spel!</p>
 	                <p>Maak met je telefoon een verbinding met het draadloze netwerk "Verhaegh"</p>
-	                <p>Ga dan op internet naar het adres: http://kwis.verhaegh</p>
+	                <p>Ga dan naar het internet-adres: http://kwis.verhaegh</p>
 	                <p>
 			            <form class="startGame">
 				            <input type="submit" value="Spel starten">
@@ -38,8 +38,9 @@
 		</table>
         {{>resetknop}}
 	{{else}}
-		Welkom bij het spel! Nog even geduld, we wachten op de medespelers.
-		Het spel gaat vanzelf verder wanneer de spelmeester de vragen start.
+	    <p>Welkom bij het spel!</p>
+	    <p>Nog even geduld, we wachten op de medespelers.</p>
+		<p>Het spel begint wanneer de spelmeester de vragen start.</p>
 	{{/if}}
 </template>
 
@@ -85,32 +86,38 @@
 <template name="answerRoom">
 	<!-- Game state: 5 -->
 	{{#if isHost}}
-		<p>
-			Het goede antwoord is: {{currentAnswer}}
-		</p>
-		{{#if notEndgame}}
-    		<p>
-                De topspelers:
-    		    <ol>
-    		        {{#each spelerTopScores}}
-    					<li>{{name}}: {{score}}</li>
-    				{{/each}}
-    			</ol>
-    		</p>
-    		<p>
-    			<form class="nextQuestion">
-    				<input type="submit" value="Naar de volgende vraag">
-        		</form>
-    		</p>
-		{{else}}
+        <p>Het goede antwoord is: {{currentAnswer}}</p>
+        {{#if notEndgame}}
+            <table>
+                <tr>
+                    <td valign="top">
+                        <p>
+                            De topspelers:
+    		                <ol>
+    		                    {{#each spelerTopScores}}
+                					<li>{{name}}: {{score}}</li>
+    		            		{{/each}}
+                			</ol>
+    		            </p>
+                    </td>
+                    <td valign="top" style="width:25%">
+	                    <p>
+    			            <form class="nextQuestion">
+    				            <input type="submit" value="Naar de volgende vraag">
+        		            </form>
+    		            </p>
+		            </td>
+	            </tr>
+            </table>
+        {{else}}
+            <p>Dit was de laatste vraag. Wie zou er gewonnen hebben?</p>
             <p>
-    			Dit was de laatste vraag. Wie zou er gewonnen hebben?
-            </p>			
-            <form class="gotoEndgame">
-				<input type="submit" value="Naar de uitslag">
-			</form>
-		{{/if}}
-	
+                <form class="gotoEndgame">
+	                <input type="submit" value="Naar de uitslag">
+	            </form>
+            </p>
+        {{/if}}
+            
 	{{else}}
 		{{>playerAnswerScreen}}
 	{{/if}}	

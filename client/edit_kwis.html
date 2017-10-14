@@ -73,13 +73,15 @@
 				        <th>Nr</th>
                         <th>Id</th>
         				<th>Vraag</th>
+        				<th>Antwoord</th>
 		        		<th>Opties</th>
         			</tr>
 		        	{{#each vragenVanDeKwis}}
 		        		<tr>
-		        			<td>{{offset @index}} - {{eenAntwoord goede}}</td>
+		        			<td>{{offset @index}}</td>
                             <td>{{volgorde}}</td>
 					        <td>{{vraag}}</td>
+					        <td>{{eenAntwoord goede}}</td>
         					<td>
 		        				<a href="#" class="edit_vraag">Edit</a>
 		        				<a href="#" class="up_vraag">&#9650;</a>
