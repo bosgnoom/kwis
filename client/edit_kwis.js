@@ -23,6 +23,17 @@ Template.editingKwis.helpers({
 			{ sort: { volgorde: 1 }}
 		);
 	},
+    
+    'offset': function(i){
+        return i+1;
+    },
+    
+    'eenAntwoord': function(i){
+        if (i==1) return "A";
+        if (i==2) return "B";
+        if (i==3) return "C";
+        if (i==4) return "D";
+    },
 	
 	'isVraagAanHetMaken': function(){
 		return Session.get("isVraagAanHetMaken") || Session.get('editedVraag');
