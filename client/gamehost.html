@@ -62,24 +62,26 @@
         </p>
 	{{else}}
     	{{resetPlayerAnswer}}
-		<p>
+		
 			{{#if playerAnswer}}
 				{{>playerAnswerScreen}}
 			{{else}}
+			    <p>
 				<form class="playerAnswer">
 					<table class="answer" style="width:100%">
 						<tr>
-							<td class="answers" style="background-color: green;" >A</td>
-							<td class="answers" style="background-color: steelblue;" >B</td>
+						    <td><a href="#" class="answers" style="background-color: green;">A</a></td>
+							<td><a href="#" class="answers" style="background-color: steelblue;">B</a></td>
 						</tr>
 						<tr>
-							<td class="answers" style="background-color: gold;" >C</td>
-							<td class="answers" style="background-color: red;" >D</td>
+							<td><a href="#" class="answers" style="background-color: gold;">C</a></td>
+							<td><a href="#" class="answers" style="background-color: red;">D</a></td>
 						</tr>
 					</table>
 				</form>
+				</p>
 			{{/if}}
-		</p>
+		
 	{{/if}}	
 </template>
 
@@ -125,11 +127,13 @@
 
 <template name="playerAnswerScreen">
 	<!-- Player answer, small template to avoid double programming -->
+	<p>
 	<table class="answer" style="width:100%">
 		<tr>
 			<td class="answer" style="background-color: {{answerColor}};">{{playerAnswer}}</td>
 		</tr>
 	</table>
+	</p>
 </template>
 
 <template name="endgame">

@@ -129,12 +129,13 @@ Template.questionRoom.helpers({
 });
 
 Template.questionRoom.events({
-	'click .answer': function(event){
+	'click a.answers': function(event){
 		Session.set('playerAnswer', event.target.innerHTML);
 		// return player answer to server
 		Meteor.call('submitPlayerAnswer', Session.get('userId'), event.target.innerHTML);
 		//console.log(Date.now());
 	}
+    
 
 });
 
@@ -211,12 +212,7 @@ Template.answerRoom.events({
 	'submit .gotoEndgame': function(){
 		Meteor.call('update_gamestatus', 6);
 		return true;
-	},
-	
-	'.click': function(){
-		console.log(this);
 	}
-
 
 });
 
