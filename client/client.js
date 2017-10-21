@@ -138,6 +138,10 @@ Template.admin_screen.helpers({
         return kwis_vragen.find(
             { kwisId: kwis },
             { sort: { volgorde:1 }});
+    },
+
+    antwoord: function(welk){
+        return 'ABCD'[welk-1];
     }
 });
 
