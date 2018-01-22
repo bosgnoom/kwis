@@ -21,5 +21,5 @@ Just to learn a bit about meteor and how to use git...
   - msavin:mongol (for testing)
 
 # Notes about using meteor/mongodb:
-* backup database using 'mongodump -o <backup name>
-* restore database using 'mongorestore --port 3001 <backup name>
+* backup database using 'mongodump -o <backup name>'
+* restore database using 'mongorestore --port 3001 <backup name>'
