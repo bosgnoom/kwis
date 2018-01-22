@@ -1,8 +1,8 @@
 # kwis
-Single server Kahoot clone. To be used in an offline application. Very alpha stage. 
+Single server Kahoot clone. To be used in an offline situation: no internet access is available. A Linksys WRT54GL is used to facilitate a wifi network.
 Just to learn a bit about meteor and how to use git...
 
-How to use/install:
+# how to use/install:
 
 - Install meteor
 - Create meteor app (meteor create kwis)
@@ -20,11 +20,6 @@ How to use/install:
   - random
   - msavin:mongol (for testing)
 
-TODO list (in dutch):
-- Bij antwoord scherm top 3 / laatste 3 scores
-- Uitslag scherm: wie heeft er gewonnen? wie was het snelste? wie het langzaamste?
-- Uitslag scherm: wie heeft er het vaakst niet geantwoord?
-
-Notes about using meteor/mongodb:
+# Notes about using meteor/mongodb:
 * backup database using 'mongodump -o <backup name>
 * restore database using 'mongorestore --port 3001 <backup name>
